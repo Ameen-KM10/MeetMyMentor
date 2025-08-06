@@ -1,7 +1,8 @@
 import React from "react";
+import { forwardRef } from "react";
 import ProfileImage from "../assets/photo.png";
 
-const MarqueeCard = React.forwardRef(({ card }, ref) => (
+const MarqueeCard = forwardRef(({ card }, ref) => (
   <div
     ref={ref}
     className="

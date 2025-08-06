@@ -1,4 +1,3 @@
-import React from "react";
 import Marquee from "../component/Marquee";
 import BackgroundImage from "../assets/hero_background.png";
 import Logo from "../assets/Logo.png";
