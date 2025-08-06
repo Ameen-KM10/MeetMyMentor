@@ -22,19 +22,6 @@ function App() {
   return (
     <>
       <LandingPage />
-      <div className="w-full overflow-hidden relative">
-        {/* Left Fade */}
-        <div className="absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-
-        {/* Right Fade */}
-        <div className="absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-        {/* Marquee content */}
-        <Marquee cards={cards} />
-      </div>
-      <div className="w-full overflow-hidden">
-            <Marquee cards={cards} />
-            </div>
     </>
   );
 }

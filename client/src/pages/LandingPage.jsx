@@ -5,7 +5,6 @@ import Logo from "../assets/Logo.png";
 import Mentors from "../assets/mentors.png";
 import Line from "../assets/path8.svg";
 
-
 const LandingPage = () => {
   const cards = [
     { title: "Card 1", description: "Description 1" },
@@ -50,7 +49,7 @@ const LandingPage = () => {
           <div className="my-3">
             <div className="flex justify-center items-center">
               <div className="flex items-center space-x-2">
-                <p className="font-sans font-semibold sm:text-[36px]">
+                <p className="font-sans font-semibold sm:text-[36px] lg:text-[64px] " >
                   Meet Your
                 </p>
                 <div className="relative inline-block">
@@ -59,13 +58,13 @@ const LandingPage = () => {
                     src={Line}
                     alt="Decorative line"
                   />
-                  <p className="font-sans font-semibold sm:text-[36px] relative z-10">
+                  <p className="font-sans font-semibold sm:text-[36px] lg:text-[64px] relative z-10">
                     Mentor
                   </p>
                 </div>
               </div>
             </div>
-            <div className="w-[300px] mx-auto sm:text-[12px] md:text-[20px] font-sans font-medium text-center text-gray-600">
+            <div className="sm:w-[300px] sm:text-[12px] lg:w-[522px] lg:text-[20px] mx-auto font-sans font-medium text-center text-gray-600">
               Talk to real people with real experience through 1:1 calls, chats
               or webinars.
             </div>
@@ -91,15 +90,10 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="w-full mt-7 overflow-hidden relative">
-        {/* Left Fade */}
-        <div className="absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-
-        {/* Right Fade */}
-        <div className="absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-        {/* Marquee content */}
-        <Marquee cards={cards} />
-      </div>
+          <div className="absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <Marquee cards={cards} />
+        </div>
       </div>
     </>
   );

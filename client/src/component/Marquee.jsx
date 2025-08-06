@@ -1,8 +1,8 @@
 import React from "react";
 import MarqueeCard from "./MarqueeCard";
 
-const cardWidth = 138+15; // 200px card + 20px margin
-const defaultSpeed = 0.7; // px per frame
+const cardWidth = 216+15; 
+const defaultSpeed = 0.7; 
 
 function Marquee({ cards }) {
   const [cardList, setCardList] = React.useState([...cards]);
