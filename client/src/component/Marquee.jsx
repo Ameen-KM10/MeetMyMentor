@@ -1,20 +1,35 @@
 import React from "react";
 import MarqueeCard from "./MarqueeCard";
 
-const cardWidth = 216+15; 
-const defaultSpeed = 0.7; 
+const defaultSpeed = 0.7;
 
 function Marquee({ cards }) {
   const [cardList, setCardList] = React.useState([...cards]);
   const [x, setX] = React.useState(0);
   const [isPaused, setIsPaused] = React.useState(false);
   const [speed] = React.useState(defaultSpeed);
+  const [cardWidth, setCardWidth] = React.useState(231); // fallback width
   const transitionRef = React.useRef("none");
+  const cardRef = React.useRef(null);
 
   React.useEffect(() => {
     setCardList([...cards]);
     setX(0);
+    // Measure the first card's width
+    if (cardRef.current) {
+      setCardWidth(cardRef.current.offsetWidth+15);
+    }
   }, [cards]);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (cardRef.current) {
+        setCardWidth(cardRef.current.offsetWidth+15);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   React.useEffect(() => {
     let animationFrame;
@@ -39,7 +54,7 @@ function Marquee({ cards }) {
     };
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [cardList, isPaused, speed]);
+  }, [cardList, isPaused, speed, cardWidth]);
 
   return (
     <div
@@ -56,7 +71,7 @@ function Marquee({ cards }) {
         }}
       >
         {cardList.map((card, idx) => (
-          <MarqueeCard key={idx + card.title} card={card} />
+          <MarqueeCard key={idx + card.title} card={card} ref={idx === 0 ? cardRef : null} />
         ))}
       </div>
     </div>
