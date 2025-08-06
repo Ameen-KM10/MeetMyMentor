@@ -1,22 +1,37 @@
-import React from "react";
+import { useState, useEffect, useRef } from "react";
 import MarqueeCard from "./MarqueeCard";
 
-const cardWidth = 138+15; // 200px card + 20px margin
-const defaultSpeed = 0.7; // px per frame
+const defaultSpeed = 0.7;
 
 function Marquee({ cards }) {
-  const [cardList, setCardList] = React.useState([...cards]);
-  const [x, setX] = React.useState(0);
-  const [isPaused, setIsPaused] = React.useState(false);
-  const [speed] = React.useState(defaultSpeed);
-  const transitionRef = React.useRef("none");
+  const [cardList, setCardList] = useState([...cards]);
+  const [x, setX] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [speed] = useState(defaultSpeed);
+  const [cardWidth, setCardWidth] = useState(231);
+  const transitionRef = useRef("none");
+  const cardRef = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCardList([...cards]);
     setX(0);
+    // Measure the first card's width
+    if (cardRef.current) {
+      setCardWidth(cardRef.current.offsetWidth+15);
+    }
   }, [cards]);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const handleResize = () => {
+      if (cardRef.current) {
+        setCardWidth(cardRef.current.offsetWidth+15);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     let animationFrame;
     const animate = () => {
       if (!isPaused) {
@@ -39,7 +54,7 @@ function Marquee({ cards }) {
     };
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [cardList, isPaused, speed]);
+  }, [cardList, isPaused, speed, cardWidth]);
 
   return (
     <div
@@ -56,7 +71,7 @@ function Marquee({ cards }) {
         }}
       >
         {cardList.map((card, idx) => (
-          <MarqueeCard key={idx + card.title} card={card} />
+          <MarqueeCard key={idx + card.title} card={card} ref={idx === 0 ? cardRef : null} />
         ))}
       </div>
     </div>
