@@ -3,31 +3,16 @@ import BackgroundImage from "../assets/hero_background.png";
 import Logo from "../assets/Logo.png";
 import Mentors from "../assets/mentors.png";
 import Line from "../assets/path8.svg";
+import {cards} from "../component/MarqueeData"
 
 const LandingPage = () => {
-  const cards = [
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-    { title: "Vanesa", description: "Product Marketing" },
-  ];
+  
   return (
     <>
       <div
         className="bg-cover bg-center h-screen relative"
         style={{ backgroundImage: `url(${BackgroundImage})` }}
       >
-        {/* 
-        This is the Header Part or the Nav Bar
-        */}
         <div className="
         sm:h-20 sm:w-full sm:px-4 
         flex items-center justify-between">
@@ -37,9 +22,6 @@ const LandingPage = () => {
           <div className="sm:text-[50px]">&#9776;</div>
         </div>
 
-        {/* 
-        Mentor count element
-        */}
         <div className="
         sm:gap-6 sm:mt-10 
         flex flex-col ">
@@ -56,9 +38,6 @@ const LandingPage = () => {
             </div>
           </div>
 
-          {/* 
-        Hero title text "Meet Your Mentors"
-        */}
           <div className="
           sm:my-3 
           lg:my-1">
