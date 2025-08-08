@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* limit to 5 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 @theme {
   --font-sans: InterVariable, sans-serif;
   --font-sans--font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
