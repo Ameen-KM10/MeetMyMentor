@@ -2,7 +2,7 @@
 
 const defaultTheme = require('tailwindcss/defaultTheme')
 
-export default {
+module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -16,7 +16,10 @@ export default {
         'xl': '1280px',
       },
       fontFamily: {
-        sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        dessaufont: ['dessau', ...defaultTheme.fontFamily.sans],
+        poppins: ["Poppins", "sans-serif"],
+        robotoSlab: ["Roboto Slab", "serif"],
       },
     },
   },

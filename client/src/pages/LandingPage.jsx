@@ -171,7 +171,7 @@ const LandingPage = () => {
                   className="
                 sm:text-[36px] 
                 lg:text-[64px] 
-                font-sans font-semibold "
+                font-dessaufont font-semibold "
                 >
                   Meet Your
                 </p>
@@ -185,7 +185,7 @@ const LandingPage = () => {
                     className="
                   sm:text-[36px] 
                   lg:text-[64px] 
-                  relative z-10 font-sans font-semibold"
+                  relative z-10 font-dessaufont font-semibold"
                   >
                     Mentor
                   </p>
