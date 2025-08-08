@@ -1,21 +1,43 @@
 import BackgroundImage from "../assets/niche_background.png";
 import nicheCards from "../data/nicheCards";
 import NicheCard from "../component/NicheCard";
+import { motion } from "framer-motion";
 
 const filters = [
-  "Web Dev", "UI/UX", "Fitness", "Career", "Marketing", "Finance", "Software", "View More"
+  "Web Dev",
+  "UI/UX",
+  "Fitness",
+  "Career",
+  "Marketing",
+  "Finance",
+  "Software",
+  "View More",
 ];
 
 import { useState } from "react";
 
 const NicheFilter = () => {
   const [activeFilter, setActiveFilter] = useState(filters[0]);
+  const [showGrid, setShowGrid] = useState(true);
 
   // Filter cards by role, except "View More"
   const filteredCards =
     activeFilter && activeFilter !== "View More"
-      ? nicheCards.filter(card => card.role === activeFilter)
+      ? nicheCards.filter((card) => card.role === activeFilter)
       : nicheCards;
+
+  // When filter changes, fade out then fade in
+  const handleFilterChange = (filter) => {
+    if (filter === "View More") {
+      window.location.href = "#";
+    } else {
+      setShowGrid(false);
+      setTimeout(() => {
+        setActiveFilter(filter);
+        setShowGrid(true);
+      }, 100); // duration matches animation
+    }
+  };
 
   return (
     <div
@@ -28,11 +50,15 @@ const NicheFilter = () => {
           Find Your Ideal <span className="text-[#FF7A00]">Mentor</span>
         </h1>
         {/* Tagline */}
-        <p className="
+        <p
+          className="
         sm:w-[300px] sm:text-[12px] 
-            lg:w-[822px] lg:text-[16px] 
-            mx-auto font-sans font-medium text-center text-gray-600 mb-6">
-          Want to grow in your chosen field? Let us help you find a mentor who’s not only experienced but also aligned with your interests and ambitions
+            lg:w-[622px] lg:text-[16px] 
+            mx-auto font-sans font-medium text-center text-gray-600 mb-6"
+        >
+          Want to grow in your chosen field? Let us help you find a mentor who’s
+          not only experienced but also aligned with your interests and
+          ambitions
         </p>
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-2 mb-8">
@@ -45,11 +71,7 @@ const NicheFilter = () => {
                   : "bg-white text-[#163C50] border-[#163C50]"
               }`}
               onClick={() => {
-                if (filter === "View More") {
-                  window.location.href = "#";
-                } else {
-                  setActiveFilter(filter);
-                }
+                handleFilterChange(filter);
               }}
             >
               {filter}
@@ -58,15 +80,23 @@ const NicheFilter = () => {
         </div>
         {/* Card Grid */}
         <div className="flex flex-wrap justify-center gap-6 w-[1000px]">
-          {filteredCards.map(card => (
-            <NicheCard
-              key={card.name + card.role}
-              image={card.image}
-              name={card.name}
-              role={card.role}
-              description={card.description}
-            />
-          ))}
+          <motion.div
+            key={activeFilter}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: showGrid ? 1 : 0 }}
+            transition={{ duration: 0.25 }}
+            className="flex flex-wrap justify-center gap-6 w-full"
+          >
+            {filteredCards.map((card) => (
+              <NicheCard
+                key={card.name + card.role}
+                image={card.image}
+                name={card.name}
+                role={card.role}
+                description={card.description}
+              />
+            ))}
+          </motion.div>
         </div>
       </div>
     </div>
