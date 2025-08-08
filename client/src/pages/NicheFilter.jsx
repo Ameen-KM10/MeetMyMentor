@@ -6,7 +6,17 @@ const filters = [
   "Web Dev", "UI/UX", "Fitness", "Career", "Marketing", "Finance", "Software", "View More"
 ];
 
+import { useState } from "react";
+
 const NicheFilter = () => {
+  const [activeFilter, setActiveFilter] = useState(filters[0]);
+
+  // Filter cards by role, except "View More"
+  const filteredCards =
+    activeFilter && activeFilter !== "View More"
+      ? nicheCards.filter(card => card.role === activeFilter)
+      : nicheCards;
+
   return (
     <div
       className="bg-cover bg-center min-h-screen relative flex justify-center"
@@ -26,10 +36,21 @@ const NicheFilter = () => {
         </p>
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {filters.map((filter, idx) => (
+          {filters.map((filter) => (
             <button
               key={filter}
-              className={`px-4 py-2 rounded-lg border font-semibold text-base ${idx === 0 ? "bg-[#FF7A00] text-white" : "bg-white text-[#163C50] border-[#163C50]"}`}
+              className={`px-4 py-2 rounded-lg border font-semibold text-base transition-colors duration-150 ${
+                activeFilter === filter
+                  ? "bg-[#FF7A00] text-white border-[#FF7A00]"
+                  : "bg-white text-[#163C50] border-[#163C50]"
+              }`}
+              onClick={() => {
+                if (filter === "View More") {
+                  window.location.href = "#";
+                } else {
+                  setActiveFilter(filter);
+                }
+              }}
             >
               {filter}
             </button>
@@ -37,9 +58,9 @@ const NicheFilter = () => {
         </div>
         {/* Card Grid */}
         <div className="flex flex-wrap justify-center gap-6 w-[1000px]">
-          {nicheCards.map(card => (
+          {filteredCards.map(card => (
             <NicheCard
-              key={card.name}
+              key={card.name + card.role}
               image={card.image}
               name={card.name}
               role={card.role}
