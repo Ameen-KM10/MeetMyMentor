@@ -32,7 +32,7 @@ function GridsBackground() {
       {/* Content layer (pointer-events-none, except for interactive elements) */}
       <div className="relative h-screen z-10 pointer-events-none flex flex-col justify-center">
           {/* Hero */}
-          <div className="flex flex-col sm:gap-62">
+          <div className="flex flex-col sm:gap-6">
             {/* Mentors count */}
             <div className="flex items-center justify-center gap-3">
               <img src={Mentors} alt="mentors" className="sm:h-5 lg:h-7" />
