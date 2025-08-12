@@ -20,8 +20,8 @@ const NicheCard = ({ image, name, role, description }) => {
     >
       <div
         className={`
-          sm:h-[52px]
-          lg:${hovered ? "h-[156px]" : "h-[68px]"}
+          
+          ${hovered ? "lg:h-[156px] sm:h-[52px]" : "lg:h-[68px] sm:h-[52px]"}
           w-full bg-white transition-all px-4 py-2
         `}
       >
