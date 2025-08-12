@@ -50,7 +50,7 @@ const NicheFilter = () => {
 
   return (
     <div
-      className="bg-cover bg-center min-h-screen flex justify-center"
+      className="bg-cover bg-center lg:min-h-screen flex justify-center"
       style={{ backgroundImage: `url(${BackgroundImage})` }}
     >
       <div className="sm:px-4 sm:py-8 sm:w-full
