@@ -16,8 +16,8 @@ function App() {
       <GridsBackground />
       <NicheFilter />
       <Stats />
-      {/* <FeaturesTab />
-      <Calculator /> */}
+      <FeaturesTab />
+      <Calculator />
     </>
   );
 }
