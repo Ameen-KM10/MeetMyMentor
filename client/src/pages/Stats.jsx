@@ -74,7 +74,7 @@ const Stats = () => {
         </div>
       </div>
 
-      {/* Stats Large */}
+      {/* Stats Small */}
       <p className="font-sans text-[15px] w-5/6 lg:hidden">
         Talking to someone who's already done it makes all the difference.
       </p>
@@ -90,12 +90,12 @@ const Stats = () => {
               <span className="font-bold text-[#163C50] text-[36px]">97</span>
               <span className="font-medium text-[#163C50] text-[36px]">%</span>
             </p>
-            <span className="text-gray-600 text-[13px] font-sans text-base max-w-[350px]">
+            <span className="text-gray-600 text-[12px] font-medium leading-4 font-sans max-w-[350px]">
               with a mentor say they find the mentorship to be a valuable one.
             </span>
           </div>
-          <div className="flex gap-3">
-            <span className="text-gray-600 text-right text-[13px] font-sans text-base max-w-[350px]">
+          <div className="flex items-center justify-center gap-3">
+            <span className="text-gray-600 text-right text-[12px] font-medium font-sans leading-4 max-w-[350px]">
               mentored will also go on to mentor others
             </span>
             <p className="flex">
@@ -108,7 +108,7 @@ const Stats = () => {
               <span className="font-bold text-[#163C50] text-[36px]">97</span>
               <span className="font-medium text-[#163C50] text-[36px]">%</span>
             </p>
-            <span className="text-gray-600 text-[13px] font-sans text-base max-w-[350px]">
+            <span className="text-gray-600 text-[12px] font-sans font-medium leading-4 max-w-[350px]">
               with a mentor say they find the mentorship to be a valuable one.{" "}
             </span>
           </div>
