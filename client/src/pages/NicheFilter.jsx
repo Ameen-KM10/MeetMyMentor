@@ -90,21 +90,23 @@ const NicheFilter = () => {
         </div>
 
         {/* Card Grid */}
-        <motion.div
-          key={activeFilter}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.25 }}
-          className="sm:flex-nowrap sm:overflow-x-auto sm:gap-4 sm:w-screen sm:pb-4
-                     lg:flex-wrap lg:justify-center lg:gap-6 lg:w-full
-                     flex max-w-screen scrollbar-hide"
-        >
-          {filteredCards.map((card) => (
-            <div key={card.name + card.role} className="sm:mb-2 lg:mb-0 flex-shrink-0">
-              <NicheCard {...card} />
-            </div>
-          ))}
-        </motion.div>
+        <div className="sm:overflow-x-auto sm:w-full lg:overflow-visible">
+          <motion.div
+            key={activeFilter}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.25 }}
+            className="sm:flex-nowrap sm:gap-4 sm:w-max sm:pb-4
+                       lg:flex-wrap lg:justify-center lg:gap-6 lg:w-full
+                       flex max-w-screen scrollbar-hide"
+          >
+            {filteredCards.map((card) => (
+              <div key={card.name + card.role} className="sm:mb-2 lg:mb-0 flex-shrink-0">
+                <NicheCard {...card} />
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </div>
   );
