@@ -72,7 +72,7 @@ function GridsBackground() {
               lg:px-8 lg:py-4 lg:text-[16px] lg:rounded-xl
               border font-sans font-medium text-white bg-[#163C50]
             "
-                onClick={() => window.location.href = '/find-mentor'}
+                onClick={() => window.location.href = '/explore'}
               >
                 Find a Mentor
               </button>
@@ -82,7 +82,7 @@ function GridsBackground() {
               lg:px-8 lg:py-4 lg:text-[16px] lg:rounded-xl
               border font-sans font-medium text-white bg-[#FC8019]
             "
-                onClick={() => window.location.href = '/become-mentor'}
+                onClick={() => window.location.href = '/mentorsignup'}
               >
                 Become a Mentor
               </button>

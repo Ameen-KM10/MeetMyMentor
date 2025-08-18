@@ -10,9 +10,7 @@ import MentorTestimonials from "./pages/MentorTestimonials";
 import NicheFilter from "./pages/NicheFilter";
 import Stats from "./pages/Stats";
 
-
 function App() {
-
   return (
     <>
       <NavBar />
