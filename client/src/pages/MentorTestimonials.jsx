@@ -1,5 +1,5 @@
-import React, { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Photo1 from "../assets/profile/photo1.webp";
 import Photo2 from "../assets/profile/photo2.webp";
 import Photo3 from "../assets/profile/photo3.webp";
@@ -8,107 +8,105 @@ import Photo5 from "../assets/profile/photo5.webp";
 
 const testimonials = [
   {
-    name: 'Surya Jayaraman',
-    title: 'CEO, Giamiti Metal Formers',
-    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+    name: "Surya Jayaraman",
+    title: "CEO, Giamiti Metal Formers",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     avatar: Photo1,
     profile: Photo1,
   },
   {
-    name: 'Surya Jayaraman',
-    title: 'CEO, Giamiti Metal Formers',
-    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+    name: "Surya Jayaraman",
+    title: "CEO, Giamiti Metal Formers",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     avatar: Photo2,
     profile: Photo2,
   },
   {
-    name: 'Surya Jayaraman',
-    title: 'CEO, Giamiti Metal Formers',
-    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+    name: "Surya Jayaraman",
+    title: "CEO, Giamiti Metal Formers",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     avatar: Photo3,
     profile: Photo3,
   },
   {
-    name: 'Surya Jayaraman',
-    title: 'CEO, Giamiti Metal Formers',
-    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+    name: "Surya Jayaraman",
+    title: "CEO, Giamiti Metal Formers",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     avatar: Photo4,
     profile: Photo4,
   },
-]
+  {
+    name: "Surya Jayaraman",
+    title: "CEO, Giamiti Metal Formers",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    avatar: Photo4,
+    profile: Photo4,
+  },
+  {
+    name: "Surya Jayaraman",
+    title: "CEO, Giamiti Metal Formers",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    avatar: Photo4,
+    profile: Photo4,
+  },
+];
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, staggerChildren: 0.15 } },
-}
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, staggerChildren: 0.15 },
+  },
+};
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 80, damping: 12 } },
-}
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 80, damping: 12 },
+  },
+};
 
 const MentorTestimonials = () => {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
     <motion.section
       ref={ref}
       variants={sectionVariants}
       initial="hidden"
       animate={inView ? "show" : "hidden"}
-      style={{
-        background: '#FAF3EC',
-        padding: '56px 0',
-        minHeight: '70vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
+      className="bg-[#FAF3EC] py-14 px-5 items-center min-h-[70vh] flex flex-col "
     >
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
         transition={{ duration: 0.7, delay: 0.2 }}
-        style={{ width: '100%', maxWidth: 1100, marginBottom: 32 }}
+        className="w-full max-w-[1100px] mb-8"
       >
-        <div style={{ fontWeight: 700, color: '#888', fontSize: '1.1rem', marginBottom: 8 }}>TESTIMONIALS</div>
-        <h2 style={{ fontWeight: 700, fontSize: '2.2rem', color: '#18405A', marginBottom: 0, lineHeight: 1.2 }}>
+        <div className="font-bold text-[#888] text-[1.1rem] mb-2 lg:hidden">
+          TESTIMONIALS
+        </div>
+        <h2 className="font-bold sm:text-[24px] lg:text-center lg:text-[2.2rem] text-[#18405A] mb-0 leading-tight">
           Don’t take our word for it Hear it from our Mentors
         </h2>
       </motion.div>
-      <div
-        style={{
-          width: '100%',
-          maxWidth: '1100px',
-          overflowX: 'auto',
-          paddingBottom: 8,
-          WebkitOverflowScrolling: 'touch',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-        }}
-        className="hide-scrollbar"
-      >
+      <div className="w-full max-w-[1100px] pb-2 hide-scrollbar overflow-x-auto md:overflow-x-visible">
         <motion.div
           variants={sectionVariants}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          style={{
-            display: 'flex',
-            gap: '32px',
-            padding: '8px 0',
-            minWidth: testimonials.length * 260 + testimonials.length * 32,
-          }}
+          className="flex gap-8 py-2 min-w-[1100px] md:min-w-0 md:flex-wrap md:justify-center"
         >
           {testimonials.map((t, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
-              style={{
-                perspective: '1200px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+              className="flex items-center justify-center"
             >
               <FlipCard testimonial={t} />
             </motion.div>
@@ -120,86 +118,39 @@ const MentorTestimonials = () => {
         .hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
       `}</style>
     </motion.section>
-  )
-}
+  );
+};
 
 function FlipCard({ testimonial }) {
-  const [flipped, setFlipped] = React.useState(false)
   return (
-    <div
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
-      style={{
-        width: 260,
-        height: 340,
-        borderRadius: 16,
-        boxShadow: '0 2px 16px rgba(0,0,0,0.07)',
-        background: '#fff',
-        position: 'relative',
-        cursor: 'pointer',
-        transition: 'box-shadow 0.2s',
-        perspective: '1200px',
-        overflow: 'hidden',
-      }}
-    >
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          willChange: 'transform',
-          transformStyle: 'preserve-3d',
-          transition: 'transform 0.6s cubic-bezier(.4,.2,.2,1)',
-          transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-        }}
-      >
-        {/* Front Side */}
-        <div
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            backfaceVisibility: 'hidden',
-            borderRadius: 16,
-            background: '#fff',
-            boxShadow: '0 2px 16px rgba(0,0,0,0.07)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            padding: '32px 18px 18px 18px',
-          }}
-        >
-          <img src={testimonial.avatar} alt={testimonial.name} style={{ width: 54, height: 54, borderRadius: '50%', objectFit: 'cover', marginBottom: 18 }} />
-          <p style={{ fontSize: '1rem', color: '#444', marginBottom: 24, textAlign: 'left', lineHeight: 1.6 }}>{testimonial.text}</p>
-          <div style={{ marginTop: 'auto', width: '100%' }}>
-            <div style={{ fontFamily: 'cursive', fontSize: '1.1rem', color: '#18405A', marginBottom: 2 }}>{testimonial.name}</div>
-            <div style={{ fontSize: '0.95rem', color: '#888' }}>{testimonial.title}</div>
-          </div>
+    <div className="relative flex items-center justify-center w-[300px] h-[360px] p-8 rounded-3xl overflow-hidden border border-[#cccccc] transition-all duration-300 ease-in-out lg:hover:shadow-[4px_4px_0_0_#18405A] lg:hover:border-[#18405A] lg:hover:-translate-x-1 lg:hover:-translate-y-1 bg-white">
+      <div className="flex flex-col h-full justify-between gap-2 text-black w-full">
+        <div>
+          <strong className="block text-lg font-bold">
+            {testimonial.name}
+          </strong>
+          <p className="opacity-80 text-base">{testimonial.title}</p>
         </div>
-        {/* Back Side */}
-        <div
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            backfaceVisibility: 'hidden',
-            borderRadius: 16,
-            background: '#fff',
-            boxShadow: '0 2px 16px rgba(0,0,0,0.07)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transform: 'rotateY(180deg)',
-          }}
-        >
-          <img src={testimonial.profile} alt={testimonial.name + ' profile'} style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover', boxShadow: '0 4px 24px rgba(0,0,0,0.10)' }} />
+        <div className="flex flex-col items-start gap-4">
+          <svg viewBox="0 0 24 24" className="w-12 h-12 mb-2">
+            <path
+              fill="black"
+              d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"
+            ></path>
+          </svg>
+          <p className="opacity-80 text-base line-clamp-3">
+            {testimonial.text}
+          </p>
+          <button className="relative font-bold bg-transparent text-black text-base py-1 px-0 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out group">
+            <span className="transition-all duration-500 ease-in-out">
+              View profile
+            </span>
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#18405A] pointer-events-none -z-10 transition-transform duration-700 ease-in-out scale-x-0 origin-right group-hover:scale-x-100 group-hover:origin-left"></span>
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default MentorTestimonials
+export default MentorTestimonials;

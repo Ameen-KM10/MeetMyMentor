@@ -63,16 +63,16 @@ const FeaturesSection = () => {
         <span className="text-[#163C50]">Platform</span> Features
       </h2>
       <div className="flex flex-col justify-center items-center">
-        <div className="grid grid-cols-1 sm:grid-cols-1 sm:mb-10 lg:grid-cols-3 gap-8 w-full max-w-5xl">
+        <div className="grid grid-cols-1 sm:grid-cols-1 sm:mb-10 lg:grid-cols-3 gap-8 w-full max-w-7xl">
           {features.map((feature, idx) => (
             <div
               key={feature.title}
-              className="bg-white rounded-2xl p-8 flex flex-col items-start min-h-[220px] transition-transform duration-200 lg:hover:scale-105 lg:hover:shadow-md"
+              className="bg-white rounded-md p-8 flex flex-col lg:gap-3 justify-center items-start sm:min-h-[220px] lg:min-h-[320px] transition-transform duration-200 lg:hover:scale-105 lg:hover:shadow-md"
               style={{
                 transitionProperty: "box-shadow, transform",
               }}
             >
-              <img className="mb-4 ml-[-10px] sm:h-[80px]" src={feature.icon} />
+              <img className="mb-4 ml-[-10px] sm:h-[60px] lg:h-[80px]" src={feature.icon} />
               <h3 className="text-lg font-semibold mb-2 text-gray-900">
                 {feature.title}
               </h3>

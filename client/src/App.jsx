@@ -20,7 +20,7 @@ function App() {
       <FeaturesTab />
       <Calculator />
       <FeaturesSection />
-      {/* <MentorTestimonials /> */}
+      <MentorTestimonials />
       <Faq />
       <Footer />
     </>
