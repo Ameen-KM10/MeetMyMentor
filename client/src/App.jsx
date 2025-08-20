@@ -13,16 +13,16 @@ import Stats from "./pages/Stats";
 function App() {
   return (
     <>
-      {/* <NavBar /> */}
-      {/* <GridsBackground /> */}
-      {/* <NicheFilter /> */}
-      {/* <Stats /> */}
+      <NavBar />
+      <GridsBackground />
+      <NicheFilter />
+      <Stats />
       <FeaturesTab />
-      {/* <Calculator /> */}
-      {/* <FeaturesSection /> */}
-      {/* <MentorTestimonials /> */}
-      {/* <Faq /> */}
-      {/* <Footer /> */}
+      <Calculator />
+      <FeaturesSection />
+      <MentorTestimonials />
+      <Faq />
+      <Footer />
     </>
   );
 }
