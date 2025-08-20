@@ -35,6 +35,20 @@ const testimonials = [
     avatar: Photo4,
     profile: Photo4,
   },
+  {
+    name: "Surya Jayaraman",
+    title: "CEO, Giamiti Metal Formers",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    avatar: Photo4,
+    profile: Photo4,
+  },
+  {
+    name: "Surya Jayaraman",
+    title: "CEO, Giamiti Metal Formers",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    avatar: Photo4,
+    profile: Photo4,
+  },
 ];
 
 const sectionVariants = {
@@ -66,7 +80,7 @@ const MentorTestimonials = () => {
       variants={sectionVariants}
       initial="hidden"
       animate={inView ? "show" : "hidden"}
-      className="bg-[#FAF3EC] py-14 min-h-[70vh] flex flex-col items-center"
+      className="bg-[#FAF3EC] py-14 px-5 items-center min-h-[70vh] flex flex-col "
     >
       <motion.div
         initial={{ opacity: 0, y: -30 }}
@@ -74,10 +88,10 @@ const MentorTestimonials = () => {
         transition={{ duration: 0.7, delay: 0.2 }}
         className="w-full max-w-[1100px] mb-8"
       >
-        <div className="font-bold text-[#888] text-[1.1rem] mb-2">
+        <div className="font-bold text-[#888] text-[1.1rem] mb-2 lg:hidden">
           TESTIMONIALS
         </div>
-        <h2 className="font-bold text-[2.2rem] text-[#18405A] mb-0 leading-tight">
+        <h2 className="font-bold sm:text-[24px] lg:text-center lg:text-[2.2rem] text-[#18405A] mb-0 leading-tight">
           Don’t take our word for it Hear it from our Mentors
         </h2>
       </motion.div>
@@ -86,7 +100,7 @@ const MentorTestimonials = () => {
           variants={sectionVariants}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          className="flex gap-8 py-2 min-w-[1100px] md:min-w-0 md:flex-wrap"
+          className="flex gap-8 py-2 min-w-[1100px] md:min-w-0 md:flex-wrap md:justify-center"
         >
           {testimonials.map((t, idx) => (
             <motion.div
@@ -109,20 +123,31 @@ const MentorTestimonials = () => {
 
 function FlipCard({ testimonial }) {
   return (
-    <div className="w-[260px] h-[340px] rounded-xl shadow-lg bg-white flex flex-col items-center justify-start p-8 transition-shadow duration-200">
-      <img
-        src={testimonial.avatar}
-        alt={testimonial.name}
-        className="w-[54px] h-[54px] rounded-full object-cover mb-4"
-      />
-      <p className="text-base text-[#444] mb-6 text-left leading-relaxed line-clamp-5">
-        {testimonial.text}
-      </p>
-      <div className="mt-auto w-full">
-        <div className="font-cursive text-lg text-[#18405A] mb-1">
-          {testimonial.name}
+    <div className="relative flex items-center justify-center w-[300px] h-[360px] p-8 rounded-3xl overflow-hidden border border-[#cccccc] transition-all duration-300 ease-in-out lg:hover:shadow-[4px_4px_0_0_#18405A] lg:hover:border-[#18405A] lg:hover:-translate-x-1 lg:hover:-translate-y-1 bg-white">
+      <div className="flex flex-col h-full justify-between gap-2 text-black w-full">
+        <div>
+          <strong className="block text-lg font-bold">
+            {testimonial.name}
+          </strong>
+          <p className="opacity-80 text-base">{testimonial.title}</p>
         </div>
-        <div className="text-sm text-[#888]">{testimonial.title}</div>
+        <div className="flex flex-col items-start gap-4">
+          <svg viewBox="0 0 24 24" className="w-12 h-12 mb-2">
+            <path
+              fill="black"
+              d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"
+            ></path>
+          </svg>
+          <p className="opacity-80 text-base line-clamp-3">
+            {testimonial.text}
+          </p>
+          <button className="relative font-bold bg-transparent text-black text-base py-1 px-0 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out group">
+            <span className="transition-all duration-500 ease-in-out">
+              View profile
+            </span>
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#18405A] pointer-events-none -z-10 transition-transform duration-700 ease-in-out scale-x-0 origin-right group-hover:scale-x-100 group-hover:origin-left"></span>
+          </button>
+        </div>
       </div>
     </div>
   );
