@@ -8,6 +8,7 @@ import GridsBackground from "./pages/GridsBackground";
 import LandingPage from "./pages/LandingPage";
 import MentorTestimonials from "./pages/MentorTestimonials";
 import NicheFilter from "./pages/NicheFilter";
+import Stack from "./pages/Stack";
 import Stats from "./pages/Stats";
 
 function App() {
@@ -17,8 +18,9 @@ function App() {
       <GridsBackground />
       <NicheFilter />
       <Stats />
-      <FeaturesTab />
-      <Calculator />
+      <Stack />
+      {/* <FeaturesTab /> */}
+      {/* <Calculator /> */}
       <FeaturesSection />
       <MentorTestimonials />
       <Faq />
