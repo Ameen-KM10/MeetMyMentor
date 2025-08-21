@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import Photo1 from "../assets/profile/photo1.webp";
 import Photo2 from "../assets/profile/photo2.webp";
@@ -72,41 +72,51 @@ const cardVariants = {
 
 const MentorTestimonials = () => {
   const ref = useRef(null);
+  const [visibleCount, setVisibleCount] = useState(testimonials.length);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth >= 768) {
+        // Desktop: show up to 4 cards
+        setVisibleCount(Math.min(4, testimonials.length));
+      } else {
+        // Mobile: show all
+        setVisibleCount(testimonials.length);
+      }
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <motion.section
       ref={ref}
       variants={sectionVariants}
-      initial="hidden"
-      animate={inView ? "show" : "hidden"}
       className="bg-[#FAF3EC] py-14 px-5 items-center min-h-[70vh] flex flex-col "
     >
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-        className="w-full max-w-[1100px] mb-8"
-      >
-        <div className="font-bold text-[#888] text-[1.1rem] mb-2 lg:hidden">
+      <motion.div className="w-full max-w-[1300px] mb-8">
+        <div className="font-bold text-[#888] text-[1.1rem] mb-2">
           TESTIMONIALS
         </div>
-        <h2 className="font-bold sm:text-[24px] lg:text-center lg:text-[2.2rem] text-[#18405A] mb-0 leading-tight">
+        <h2 className="font-bold text-[2.2rem] text-[#18405A] mb-0 leading-tight">
           Don’t take our word for it Hear it from our Mentors
         </h2>
       </motion.div>
-      <div className="w-full max-w-[1100px] pb-2 hide-scrollbar overflow-x-auto md:overflow-x-visible">
+      <div className="w-full max-w-screen pb-2 hide-scrollbar overflow-x-auto md:overflow-hidden">
         <motion.div
           variants={sectionVariants}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          className="flex gap-8 py-2 min-w-[1100px] md:min-w-0 md:flex-wrap md:justify-center"
+          className="flex gap-8 py-2 flex-nowrap md:justify-center md:overflow-hidden"
         >
-          {testimonials.map((t, idx) => (
+          {testimonials.slice(0, visibleCount).map((t, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
-              className="flex items-center justify-center"
+              className="flex items-center justify-center flex-shrink-0 w-[300px] h-[360px] md:w-[300px] md:h-[360px] md:flex-shrink-0"
+              animate={inView ? "show" : "hidden"}
             >
               <FlipCard testimonial={t} />
             </motion.div>
