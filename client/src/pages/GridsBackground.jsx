@@ -1,8 +1,6 @@
 import Squares from "../component/Squares";
 import { memo } from "react";
 import Marquee from "../component/Marquee";
-import BackgroundImage from "../assets/hero_background.png";
-import Logo from "../assets/Logo.png";
 import Mentors from "../assets/mentors.png";
 import Line from "../assets/path8.svg";
 import { cards } from "../component/MarqueeData";
@@ -67,18 +65,26 @@ const GridsBackground = memo(() => {
               <p className="font-dessaufont font-semibold sm:text-[36px] lg:text-[64px]">
                 Meet Your
               </p>
-              <div className="relative">
-                <LineSVG />
-                <p className="relative font-dessaufont font-semibold sm:text-[36px] lg:text-[64px] text-[#FC8019]">
+              <div className="relative inline-block">
+                <img
+                  src={Line}
+                  alt="Decorative line"
+                  className="absolute top-1 left-1/2 -translate-x-1/2 z-10"
+                />
+                <p className="relative z-10 font-dessaufont font-semibold sm:text-[36px] lg:text-[64px]">
                   Mentor
                 </p>
               </div>
+            </div>
+            <div className="mx-auto text-center font-sans font-medium text-gray-600 sm:w-[300px] sm:text-[12px] lg:w-[522px] lg:text-[20px]">
+              Talk to real people with real experience through 1:1 calls, chats
+              or webinars.
             </div>
           </div>
 
           {/* CTA buttons */}
           {/* CTA buttons */}
-          <div className="flex lg:pointer-events-auto sm:gap-2 sm:pointer-events-auto sm:flex-col lg:flex-row lg:gap-4 justify-center">
+          <div className="flex lg:pointer-events-auto sm:gap-2 sm:pointer-events-auto lg:gap-4 justify-center">
             <button
               className="
               sm:px-5 sm:py-2 sm:text-[14px] sm:rounded-lg

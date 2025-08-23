@@ -71,10 +71,17 @@ const Squares = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         isVisible.current = entry.isIntersecting;
-        if (!entry.isIntersecting && requestRef.current) {
-          cancelAnimationFrame(requestRef.current);
-        } else if (entry.isIntersecting && !requestRef.current) {
-          requestRef.current = requestAnimationFrame(updateAnimation);
+        if (!entry.isIntersecting) {
+          // Cancel animation when not visible
+          if (requestRef.current) {
+            cancelAnimationFrame(requestRef.current);
+            requestRef.current = null; // Clear the reference
+          }
+        } else {
+          // Resume animation when visible (only if not already running)
+          if (!requestRef.current) {
+            requestRef.current = requestAnimationFrame(updateAnimation);
+          }
         }
       },
       { threshold: 0.1 }
@@ -171,7 +178,10 @@ const Squares = ({
     return () => {
       observer.disconnect();
       window.removeEventListener("resize", resizeCanvas);
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+        requestRef.current = null; // Clear the reference
+      }
       canvas.removeEventListener("mousemove", handleMouseMove);
       canvas.removeEventListener("mouseleave", handleMouseLeave);
     };
