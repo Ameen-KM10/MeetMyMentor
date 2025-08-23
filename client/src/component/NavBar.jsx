@@ -29,51 +29,77 @@ const NavBar = () => {
           <img
             src={Logo}
             alt="logo"
-            className="sm:h-[40px] sm:w-[40px] lg:h-[50px] lg:w-[50px]"
+            className="sm:h-[40px] sm:w-[40px] lg:h-[50px] lg:w-[50px] transition-all duration-300 hover:scale-110 hover:rotate-3 cursor-pointer"
           />
 
           {/* Centered Menus */}
           <div className="hidden lg:flex flex-1 justify-center gap-6">
             {scrolled && (
               <>
-                <button
-                  className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black"
-                >
-                  Find a Mentor
+                <button className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group">
+                  <span className="relative z-10">Find a Mentor</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left opacity-0 group-hover:opacity-10"></div>
                 </button>
-                <button
-                  className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black"
-                >
-                  Become a Mentor
+                <button className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group">
+                  <span className="relative z-10">Become a Mentor</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left opacity-0 group-hover:opacity-10"></div>
                 </button>
               </>
             )}
           </div>
 
           {/* Login/Sign Up always visible */}
-          <div className="hidden  gap-2 lg:flex">
-            <button
-              className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black"
-            >
-              Login
+          <div className="hidden gap-2 lg:flex">
+            <button className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group">
+              <span className="relative z-10">Login</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-20"></div>
             </button>
-            <button
-              className="sm:px-5 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-white bg-[#163C50]"
-            >
-              Sign Up
+            <button className="sm:px-5 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-white bg-[#163C50] transition-all duration-300 hover:bg-[#FC8019] hover:scale-105 hover:shadow-lg active:scale-95 relative overflow-hidden group">
+              <span className="relative z-10">Sign Up</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-10"></div>
             </button>
           </div>
 
           {/* Hamburger menu */}
           <button
-            className="z-20 focus:outline-none sm:text-[50px] md:text-[50px] lg:hidden"
+            className="z-20 focus:outline-none sm:text-[50px] md:text-[50px] lg:hidden transition-all duration-300 p-2 rounded-lg "
             onClick={() => setDrawerOpen(!drawerOpen)}
             aria-label="Toggle menu"
           >
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-              <rect x="4" y="7" width="16" height="2" rx="1" fill="#163C50" />
-              <rect x="4" y="11" width="16" height="2" rx="1" fill="#163C50" />
-              <rect x="4" y="15" width="16" height="2" rx="1" fill="#163C50" />
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="transition-transform duration-300 "
+            >
+              <rect
+                x="4"
+                y="7"
+                width="16"
+                height="2"
+                rx="1"
+                fill="#163C50"
+                className="transition-all duration-300"
+              />
+              <rect
+                x="4"
+                y="11"
+                width="16"
+                height="2"
+                rx="1"
+                fill="#163C50"
+                className="transition-all duration-300"
+              />
+              <rect
+                x="4"
+                y="15"
+                width="16"
+                height="2"
+                rx="1"
+                fill="#163C50"
+                className="transition-all duration-300"
+              />
             </svg>
           </button>
         </div>
@@ -101,14 +127,10 @@ const NavBar = () => {
           </a>
           <div className="flex-grow" />
           <div className="flex flex-col gap-2">
-            <button
-              className="sm:px-2 sm:py-2 sm:text-[14px] lg:px-2 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-black border-[#163C50]"
-            >
+            <button className="sm:px-2 sm:py-2 sm:text-[14px] lg:px-2 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-black border-[#163C50]">
               Login
             </button>
-            <button
-              className="sm:px-2 sm:py-2 sm:text-[14px] lg:px-2 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-white bg-[#163C50]"
-            >
+            <button className="sm:px-2 sm:py-2 sm:text-[14px] lg:px-2 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-white bg-[#163C50]">
               Sign Up
             </button>
           </div>
