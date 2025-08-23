@@ -11,34 +11,56 @@ function Marquee({ cards }) {
   const [cardWidth, setCardWidth] = useState(231);
   const transitionRef = useRef("none");
   const cardRef = useRef(null);
+  const containerRef = useRef(null);
+  const isVisible = useRef(true);
+  const animationFrame = useRef(null);
 
   useEffect(() => {
     setCardList([...cards]);
     setX(0);
     // Measure the first card's width
     if (cardRef.current) {
-      setCardWidth(cardRef.current.offsetWidth+15);
+      setCardWidth(cardRef.current.offsetWidth + 15);
     }
   }, [cards]);
 
   useEffect(() => {
     const handleResize = () => {
       if (cardRef.current) {
-        setCardWidth(cardRef.current.offsetWidth+15);
+        setCardWidth(cardRef.current.offsetWidth + 15);
       }
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Intersection Observer to pause animation when not visible
   useEffect(() => {
-    let animationFrame;
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible.current = entry.isIntersecting;
+        if (!entry.isIntersecting) {
+          setIsPaused(true);
+        } else {
+          setIsPaused(false);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     const animate = () => {
-      if (!isPaused) {
-        setX(prevX => {
+      if (!isPaused && isVisible.current) {
+        setX((prevX) => {
           let nextX = prevX - speed;
           if (Math.abs(nextX) >= cardWidth) {
-            setCardList(prevList => {
+            setCardList((prevList) => {
               const shifted = [...prevList];
               shifted.push(shifted.shift());
               return shifted;
@@ -50,14 +72,21 @@ function Marquee({ cards }) {
           return nextX;
         });
       }
-      animationFrame = requestAnimationFrame(animate);
+      animationFrame.current = requestAnimationFrame(animate);
     };
-    animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [cardList, isPaused, speed, cardWidth]);
+
+    animationFrame.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
+      }
+    };
+  }, [isPaused, speed, cardWidth]);
 
   return (
     <div
+      ref={containerRef}
       className="overflow-hidden w-full py-4 px-4"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -71,12 +100,15 @@ function Marquee({ cards }) {
         }}
       >
         {cardList.map((card, idx) => (
-          <MarqueeCard key={idx + card.title} card={card} ref={idx === 0 ? cardRef : null} />
+          <MarqueeCard
+            key={idx + card.title}
+            card={card}
+            ref={idx === 0 ? cardRef : null}
+          />
         ))}
       </div>
     </div>
   );
 }
-
 
 export default Marquee;
