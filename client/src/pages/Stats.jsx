@@ -3,6 +3,7 @@ import Avatar2 from "../assets/profile/photo2.webp";
 import Avatar3 from "../assets/profile/photo3.webp";
 import Avatar4 from "../assets/profile/photo4.webp";
 import MinimalChart from "../component/MinimalChart";
+import CountUp from "../component/CountUp";
 
 const Stats = () => {
   return (
@@ -32,9 +33,14 @@ const Stats = () => {
         <div className="flex flex-col justify-between">
           <div className="flex flex-col gap-3">
             <p className="flex">
-              <span className="font-bold text-[#163C50] text-2xl lg:text-[45px]">
-                97
-              </span>
+              <CountUp
+                from={80}
+                to={97}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text font-bold text-[#163C50] text-2xl lg:text-[45px]"
+              />
               <span className="font-semibold text-[#163C50] text-2xl lg:text-[45px]">
                 %
               </span>
@@ -46,9 +52,14 @@ const Stats = () => {
 
           <div className="flex flex-col gap-3">
             <p className="flex">
-              <span className="font-bold text-[#163C50] text-2xl lg:text-[45px]">
-                97
-              </span>
+              <CountUp
+                from={80}
+                to={97}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text font-bold text-[#163C50] text-2xl lg:text-[45px]"
+              />
               <span className="font-semibold text-[#163C50] text-2xl lg:text-[45px]">
                 %
               </span>
@@ -60,9 +71,14 @@ const Stats = () => {
 
           <div className="flex flex-col gap-3">
             <p className="flex">
-              <span className="font-bold text-[#163C50] text-2xl lg:text-[45px]">
-                97
-              </span>
+              <CountUp
+                from={80}
+                to={97}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text font-bold text-[#163C50] text-2xl lg:text-[45px]"
+              />
               <span className="font-semibold text-[#163C50] text-2xl lg:text-[45px]">
                 %
               </span>
