@@ -28,6 +28,18 @@ const GridsBackground = memo(() => {
           direction="down"
           borderColor="#000000"
           hoverFillColor="#000"
+          className='opacity-60'
+        />
+        {/* Circular fade overlay for Squares only */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 11,
+            background:
+              "radial-gradient(circle, rgba(255,255,255,0) 60%, #fff 100%)",
+          }}
         />
         {/* Fade overlay (not interactive) - optimized with transform3d for GPU acceleration */}
         <div
@@ -66,14 +78,14 @@ const GridsBackground = memo(() => {
                 Meet Your
               </p>
               <div className="relative inline-block">
+                <p className="relative z-10 font-dessaufont font-semibold sm:text-[36px] lg:text-[64px]">
+                  Mentor
+                </p>
                 <img
                   src={Line}
                   alt="Decorative line"
                   className="absolute top-1 left-1/2 -translate-x-1/2 z-10"
                 />
-                <p className="relative z-10 font-dessaufont font-semibold sm:text-[36px] lg:text-[64px]">
-                  Mentor
-                </p>
               </div>
             </div>
             <div className="mx-auto text-center font-sans font-medium text-gray-600 sm:w-[300px] sm:text-[12px] lg:w-[522px] lg:text-[20px]">

@@ -46,7 +46,8 @@ const Stats = () => {
               </span>
             </p>
             <span className="text-gray-600 font-sans text-base max-w-[350px]">
-              with a mentor say they find the mentorship to be a valuable one.
+              of inndividuals with a mentor say they find the experience to be a
+              valuable one
             </span>
           </div>
 
@@ -54,7 +55,7 @@ const Stats = () => {
             <p className="flex">
               <CountUp
                 from={80}
-                to={97}
+                to={89}
                 separator=","
                 direction="up"
                 duration={1}
@@ -65,7 +66,7 @@ const Stats = () => {
               </span>
             </p>
             <span className="text-gray-600 font-sans text-base max-w-[350px]">
-              with a mentor say they find the mentorship to be a valuable one.
+              of those who have been mentored will also go on to mentor others
             </span>
           </div>
 
@@ -73,7 +74,7 @@ const Stats = () => {
             <p className="flex">
               <CountUp
                 from={80}
-                to={97}
+                to={84}
                 separator=","
                 direction="up"
                 duration={1}
@@ -84,7 +85,8 @@ const Stats = () => {
               </span>
             </p>
             <span className="text-gray-600 font-sans text-base max-w-[350px]">
-              with a mentor say they find the mentorship to be a valuable one.
+              reported that mentoring relationships provide two-way inspiration
+              for mentor and mentee
             </span>
           </div>
         </div>
@@ -138,7 +140,7 @@ const Stats = () => {
           <br />
           That’s really worth the cost of everything “
         </p>
-        <span className="text-center text-gray-600 font-sans sm:text-[12px] mb-4">
+        <span className="text-center text-gray-600 font-sans sm:text-[16px] mb-4">
           Surya J, Meetmymentor Student
         </span>
         {/* Avatars */}
@@ -146,12 +148,12 @@ const Stats = () => {
           <img
             src={Avatar1}
             alt="avatar"
-            className="w-8 h-8 rounded-full border"
+            className="w-4 h-4 rounded-full border"
           />
           <img
             src={Avatar2}
             alt="avatar"
-            className="w-8 h-8 rounded-full border"
+            className="w-6 h-6 rounded-full border"
           />
           <img
             src={Avatar3}
@@ -159,9 +161,14 @@ const Stats = () => {
             className="w-8 h-8 rounded-full border"
           />
           <img
+            src={Avatar3}
+            alt="avatar"
+            className="w-6 h-6 rounded-full border"
+          />
+          <img
             src={Avatar4}
             alt="avatar"
-            className="w-8 h-8 rounded-full border"
+            className="w-4 h-4 rounded-full border"
           />
         </div>
       </div>

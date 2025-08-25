@@ -1,7 +1,17 @@
 import { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import VideoImg from "../assets/stock.png";
-import UploadCloud from "../assets/icons/upload.svg";
+import Tabs1 from "../assets/icons/tabs_1.svg";
+import Tabs2 from "../assets/icons/tabs_2.svg";
+import Tabs3 from "../assets/icons/tabs_3.svg";
+import Tabs4 from "../assets/icons/tabs_4.svg";
+import Tabs5 from "../assets/icons/tabs_5.svg";
+import Tabs6 from "../assets/icons/tabs_6.svg";
+import Tabs7 from "../assets/icons/tabs_7.svg";
+import Tabs8 from "../assets/icons/tabs_8.svg";
+import Tabs9 from "../assets/icons/tabs_9.svg";
+import Tabs10 from "../assets/icons/tabs_10.svg";
+import Tabs11 from "../assets/icons/tabs_11.svg";
+import Tabs12 from "../assets/icons/tabs_12.svg";
 
 const tabs = [
   {
@@ -10,91 +20,91 @@ const tabs = [
       {
         title: "Crystal-Clear Video",
         desc: "Reliable quality for distraction-free calls",
-        icon: UploadCloud,
+        icon: Tabs1,
       },
       {
         title: "Screen Share",
         desc: "Walk through work, demos in real time",
-        icon: UploadCloud,
+        icon: Tabs2,
       },
       {
         title: "Live Whiteboard",
         desc: "Reliable quality for distraction-free calls",
-        icon: UploadCloud,
+        icon: Tabs3,
       },
     ],
     description:
       "One-on-One calls to connect directly, answer questions and share knowledge in real time.",
-    image: VideoImg,
+    image: "https://meetmymentor.me/assets/videomodal4-3e2c7b23.png",
   },
   {
     label: "1:1 DMs",
     features: [
       {
-        title: "Direct Messaging",
-        desc: "Chat privately with your mentor",
-        icon: UploadCloud,
+        title: "Stay On-Platform",
+        desc: "No need to share your email or phone number.",
+        icon: Tabs4,
+      },
+      {
+        title: "Clean Interface",
+        desc: "Simple layout for smooth back-and-forth messaging.",
+        icon: Tabs5,
       },
       {
         title: "File Sharing",
-        desc: "Share resources and notes easily",
-        icon: UploadCloud,
-      },
-      {
-        title: "Instant Replies",
-        desc: "Get answers in real time",
-        icon: UploadCloud,
+        desc: "Send resumes, mockups, presentations and more.",
+        icon: Tabs6,
       },
     ],
     description:
-      "Message mentors directly to ask questions, share files, and get instant feedback.",
-    image: VideoImg,
+      "Direct messaging without sharing personal contact details. Built for quick, focused conversations.",
+    image: "https://meetmymentor.me/assets/chat4-7bf7d93a.png",
   },
   {
     label: "Webinars",
     features: [
       {
-        title: "Group Sessions",
-        desc: "Learn with others in live webinars",
-        icon: UploadCloud,
+        title: "One-Click Setup",
+        desc: "Create and publish webinars for any topic or audience.",
+        icon: Tabs7,
       },
       {
-        title: "Q&A",
-        desc: "Ask questions and get answers live",
-        icon: UploadCloud,
+        title: "End-to-End Support",
+        desc: "Handles payments, confirmations, meet links, and reminders automatically.",
+        icon: Tabs8,
       },
       {
-        title: "Session Recordings",
-        desc: "Access past webinars anytime",
-        icon: UploadCloud,
+        title: "Participant Tracking",
+        desc: " View attendees, monitor status, and manage email and whatsapp follow-ups.",
+        icon: Tabs9,
       },
     ],
     description:
-      "Join live webinars to learn from mentors, ask questions, and access recordings.",
-    image: VideoImg,
+      "Host paid webinars with full support across setup, access, and post-session tracking.",
+    image: "https://meetmymentor.me/assets/webinar4-f7f42ee1.png",
   },
   {
     label: "Digital Content",
     features: [
       {
-        title: "Exclusive Resources",
-        desc: "Access curated guides and templates",
-        icon: UploadCloud,
+        title: "Course Hosting",
+        desc: "Upload videos, PDFs or audio files for paid, gated access.",
+        icon: Tabs10,
       },
       {
-        title: "Video Tutorials",
-        desc: "Learn at your own pace",
-        icon: UploadCloud,
+        title: "Anti-Piracy Protection",
+        desc: "Includes DRM encryption, IP restriction and screen capture blocking.",
+        icon: Tabs11,
       },
       {
-        title: "Downloadable Content",
-        desc: "Save materials for future use",
-        icon: UploadCloud,
+        title: "Direct Checkout",
+        desc: "Buyers can purchase and access content directly from creator profiles.",
+        icon: Tabs12,
       },
     ],
     description:
-      "Get access to exclusive digital content, tutorials, and downloadable resources.",
-    image: VideoImg,
+      "Upload and sell exclusive digital content with built-in protection and flexible access control.",
+    image: "https://meetmymentor.me/assets/courses4-9e10f9d1.png",
   },
 ];
 
@@ -146,45 +156,28 @@ const OptimizedCard = ({ card, index, scrollYProgress, isVisible }) => {
         mass: 0.8,
       }}
     >
-      {/* Mobile Layout */}
-      <div className="h-full flex flex-col gap-2 p-6 lg:hidden">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900 text-left">
+      {/* Mobile Layout from FeaturesTab.jsx */}
+      <div className="flex flex-col justify-center lg:hidden">
+        <h3 className="font-semibold text-[#222] text-[24px] text-left mb-2">
           {card.label}
-        </h2>
-
-        <div className="flex justify-center mb-4">
-          <img
-            src={card.image}
-            alt={card.label}
-            className="w-full h-48 object-cover rounded-xl shadow-lg opacity-90"
-            loading="lazy"
-            decoding="async"
-            fetchPriority={index === 0 ? "high" : "low"}
-          />
-        </div>
-
-        <p className="text-gray-700 text-base mb-4 leading-relaxed text-left">
+        </h3>
+        <p className="text-gray-600 font-sans text-[16px] font-medium mb-4 text-left">
           {card.description}
         </p>
-
-        <div className="space-y-3">
+        <img src={card.image} alt={card.label} className="w-full h-auto mb-6" />
+        <ul className="flex flex-col gap-4 ml-10 mb-4">
           {card.features.map((feature, featureIndex) => (
-            <div key={featureIndex} className="flex items-center gap-3">
-              <img
-                src={feature.icon}
-                alt=""
-                className="w-4 h-4 opacity-70 flex-shrink-0"
-                loading="lazy"
-              />
-              <div className="text-left">
-                <span className="text-gray-900 font-semibold text-sm">
-                  {feature.title}
-                </span>
-                <p className="text-gray-600 text-xs">{feature.desc}</p>
+            <li key={featureIndex} className="flex items-center gap-3">
+              <span>
+                <img src={feature.icon} />
+              </span>
+              <div>
+                <span className="font-medium text-[#222]">{feature.title}</span>
+                <div className="text-gray-500 text-sm">{feature.desc}</div>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       {/* Desktop Layout */}
@@ -262,7 +255,7 @@ const Stack = () => {
   const cards = useMemo(() => tabs, []);
 
   return (
-    <div className="text-white min-h-screen flex flex-col mb-20">
+    <div className="text-white bg-[#FAF3EC] min-h-screen flex flex-col">
       {/* Stack Container - Reduced height for better performance */}
       <div ref={containerRef} className="relative h-[400vh]">
         <div className="sticky top-0 h-screen flex flex-col items-center justify-center">

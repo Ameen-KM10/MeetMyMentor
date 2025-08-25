@@ -1,7 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import VideoImg from "../assets/stock.png"; // Use any stock image you have
-import UploadCloud from "../assets/icons/upload.svg";
+import Tabs1 from "../assets/icons/tabs_1.svg";
+import Tabs2 from "../assets/icons/tabs_2.svg";
+import Tabs3 from "../assets/icons/tabs_3.svg";
+import Tabs4 from "../assets/icons/tabs_4.svg";
+import Tabs5 from "../assets/icons/tabs_5.svg";
+import Tabs6 from "../assets/icons/tabs_6.svg";
+import Tabs7 from "../assets/icons/tabs_7.svg";
+import Tabs8 from "../assets/icons/tabs_8.svg";
+import Tabs9 from "../assets/icons/tabs_9.svg";
+import Tabs10 from "../assets/icons/tabs_10.svg";
+import Tabs11 from "../assets/icons/tabs_11.svg";
+import Tabs12 from "../assets/icons/tabs_12.svg";
 
 const tabs = [
   {
@@ -10,91 +20,91 @@ const tabs = [
       {
         title: "Crystal-Clear Video",
         desc: "Reliable quality for distraction-free calls",
-        icon: UploadCloud,
+        icon: Tabs1,
       },
       {
         title: "Screen Share",
         desc: "Walk through work, demos in real time",
-        icon: UploadCloud,
+        icon: Tabs2,
       },
       {
         title: "Live Whiteboard",
         desc: "Reliable quality for distraction-free calls",
-        icon: UploadCloud,
+        icon: Tabs3,
       },
     ],
     description:
       "One-on-One calls to connect directly, answer questions and share knowledge in real time.",
-    image: VideoImg,
+    image: "https://meetmymentor.me/assets/videomodal4-3e2c7b23.png",
   },
   {
     label: "1:1 DMs",
     features: [
       {
-        title: "Direct Messaging",
-        desc: "Chat privately with your mentor",
-        icon: UploadCloud,
+        title: "Stay On-Platform",
+        desc: "No need to share your email or phone number.",
+        icon: Tabs4,
+      },
+      {
+        title: "Clean Interface",
+        desc: "Simple layout for smooth back-and-forth messaging.",
+        icon: Tabs5,
       },
       {
         title: "File Sharing",
-        desc: "Share resources and notes easily",
-        icon: UploadCloud,
-      },
-      {
-        title: "Instant Replies",
-        desc: "Get answers in real time",
-        icon: UploadCloud,
+        desc: "Send resumes, mockups, presentations and more.",
+        icon: Tabs6,
       },
     ],
     description:
-      "Message mentors directly to ask questions, share files, and get instant feedback.",
-    image: VideoImg,
+      "Direct messaging without sharing personal contact details. Built for quick, focused conversations.",
+    image: "https://meetmymentor.me/assets/chat4-7bf7d93a.png",
   },
   {
     label: "Webinars",
     features: [
       {
-        title: "Group Sessions",
-        desc: "Learn with others in live webinars",
-        icon: UploadCloud,
+        title: "One-Click Setup",
+        desc: "Create and publish webinars for any topic or audience.",
+        icon: Tabs7,
       },
       {
-        title: "Q&A",
-        desc: "Ask questions and get answers live",
-        icon: UploadCloud,
+        title: "End-to-End Support",
+        desc: "Handles payments, confirmations, meet links, and reminders automatically.",
+        icon: Tabs8,
       },
       {
-        title: "Session Recordings",
-        desc: "Access past webinars anytime",
-        icon: UploadCloud,
+        title: "Participant Tracking",
+        desc: " View attendees, monitor status, and manage email and whatsapp follow-ups.",
+        icon: Tabs9,
       },
     ],
     description:
-      "Join live webinars to learn from mentors, ask questions, and access recordings.",
-    image: VideoImg,
+      "Host paid webinars with full support across setup, access, and post-session tracking.",
+    image: "https://meetmymentor.me/assets/webinar4-f7f42ee1.png",
   },
   {
     label: "Digital Content",
     features: [
       {
-        title: "Exclusive Resources",
-        desc: "Access curated guides and templates",
-        icon: UploadCloud,
+        title: "Course Hosting",
+        desc: "Upload videos, PDFs or audio files for paid, gated access.",
+        icon: Tabs10,
       },
       {
-        title: "Video Tutorials",
-        desc: "Learn at your own pace",
-        icon: UploadCloud,
+        title: "Anti-Piracy Protection",
+        desc: "Includes DRM encryption, IP restriction and screen capture blocking.",
+        icon: Tabs11,
       },
       {
-        title: "Downloadable Content",
-        desc: "Save materials for future use",
-        icon: UploadCloud,
+        title: "Direct Checkout",
+        desc: "Buyers can purchase and access content directly from creator profiles.",
+        icon: Tabs12,
       },
     ],
     description:
-      "Get access to exclusive digital content, tutorials, and downloadable resources.",
-    image: VideoImg,
+      "Upload and sell exclusive digital content with built-in protection and flexible access control.",
+    image: "https://meetmymentor.me/assets/courses4-9e10f9d1.png",
   },
 ];
 
@@ -128,61 +138,7 @@ const FeaturesTab = () => {
           </button>
         ))}
       </div>
-      {/* Tab content for desktop with animation */}
-      <div className="hidden lg:flex w-full max-w-4xl items-center justify-between gap-12 min-h-[320px]">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            variants={tabContentVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.18, ease: "easeOut" }} // <-- Faster animation
-            className="flex w-full items-center justify-between gap-12"
-          >
-            {/* Left: Features */}
-            <div className="flex-1">
-              <h3 className="font-semibold text-[#222] text-[40px] mb-2">
-                {tabs[activeTab].label}
-              </h3>
-              <p className="text-gray-600 font-sans text-[16px] mb-6">
-                {tabs[activeTab].description}
-              </p>
-              <ul className="flex flex-col just gap-4">
-                {tabs[activeTab].features.map((feature) => (
-                  <li key={feature.title} className="flex items-center gap-5">
-                    {/* <span className="text-2xl">{feature.icon}</span> */}
-                    <span>
-                      <img src={feature.icon} />
-                    </span>
-                    <div>
-                      <span className="font-semibold text-[18px] text-[#222]">
-                        {feature.title}
-                      </span>
-                      <div className="text-gray-500 text-[16px]">
-                        {feature.desc}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {/* Right: Image */}
-            <div className="flex-1 flex justify-center">
-              <motion.img
-                key={tabs[activeTab].image + activeTab}
-                src={tabs[activeTab].image}
-                alt={tabs[activeTab].label}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.18, ease: "easeOut" }} // <-- Faster animation
-                className="w-full h-auto"
-              />
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+
       {/* Mobile: show all tab contents one after another */}
       <h2 className="lg:hidden text-left font-bold font-sans text-[#FC8019] text-[36px] leading-10 mb-4">
         <span className="text-[#163C50]">For the</span> <br /> Mentors
@@ -211,9 +167,18 @@ const FeaturesTab = () => {
             <ul className="flex flex-col gap-4 ml-10 mb-4">
               {tab.features.map((feature) => (
                 <li key={feature.title} className="flex items-center gap-3">
-                  {/* <span className="text-2xl">{feature.icon}</span> */}
                   <span>
-                    <img src={feature.icon} />
+                    <img
+                      src={feature.icon}
+                      style={{
+                        width: 24,
+                        height: 24,
+                        minWidth: 24,
+                        minHeight: 24,
+                        maxWidth: 24,
+                        maxHeight: 24,
+                      }}
+                    />
                   </span>
                   <div>
                     <span className="font-medium text-[#222]">
