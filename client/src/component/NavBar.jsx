@@ -36,11 +36,17 @@ const NavBar = () => {
           <div className="hidden lg:flex flex-1 justify-center gap-6">
             {scrolled && (
               <>
-                <button className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group">
+                <button
+                  className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group"
+                  onClick={() => (window.location.href = "/explore")}
+                >
                   <span className="relative z-10">Find a Mentor</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left opacity-0 group-hover:opacity-10"></div>
                 </button>
-                <button className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group">
+                <button
+                  className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group"
+                  onClick={() => (window.location.href = "/mentorsignup")}
+                >
                   <span className="relative z-10">Become a Mentor</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left opacity-0 group-hover:opacity-10"></div>
                 </button>
@@ -50,11 +56,17 @@ const NavBar = () => {
 
           {/* Login/Sign Up always visible */}
           <div className="hidden gap-2 lg:flex">
-            <button className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group">
+            <button
+              className="sm:px-6 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group"
+              onClick={() => (window.location.href = "/login")}
+            >
               <span className="relative z-10">Login</span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-20"></div>
             </button>
-            <button className="sm:px-5 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-white bg-[#163C50] transition-all duration-300 hover:bg-[#FC8019] hover:scale-105 hover:shadow-lg active:scale-95 relative overflow-hidden group">
+            <button
+              className="sm:px-5 sm:py-2 sm:text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-white bg-[#163C50] transition-all duration-300 hover:bg-[#FC8019] hover:scale-105 hover:shadow-lg active:scale-95 relative overflow-hidden group"
+              onClick={() => (window.location.href = "/signup")}
+            >
               <span className="relative z-10">Sign Up</span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-10"></div>
             </button>
@@ -119,18 +131,30 @@ const NavBar = () => {
           >
             &times;
           </button>
-          <a href="#" className="text-lg font-semibold text-[#163C50]">
+          <a
+            className="text-lg font-semibold text-[#163C50]"
+            onClick={() => (window.location.href = "/explore")}
+          >
             Find a Mentor
           </a>
-          <a href="#" className="text-lg font-semibold text-[#163C50]">
+          <a
+            className="text-lg font-semibold text-[#163C50]"
+            onClick={() => (window.location.href = "/mentorsignup")}
+          >
             Become a Mentor
           </a>
           <div className="flex-grow" />
           <div className="flex flex-col gap-2">
-            <button className="sm:px-2 sm:py-2 sm:text-[14px] lg:px-2 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-black border-[#163C50]">
+            <button
+              className="sm:px-2 sm:py-2 sm:text-[14px] lg:px-2 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-black border-[#163C50]"
+              onClick={() => (window.location.href = "/login")}
+            >
               Login
             </button>
-            <button className="sm:px-2 sm:py-2 sm:text-[14px] lg:px-2 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-white bg-[#163C50]">
+            <button
+              className="sm:px-2 sm:py-2 sm:text-[14px] lg:px-2 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-white bg-[#163C50]"
+              onClick={() => (window.location.href = "/signup")}
+            >
               Sign Up
             </button>
           </div>

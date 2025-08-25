@@ -1,7 +1,9 @@
 import { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import VideoImg from "../assets/stock.png";
-import UploadCloud from "../assets/icons/upload.svg";
+import UploadCloud from "../assets/icons/tabs_1.svg";
+import Tabs2 from "../assets/icons/tabs_2.svg";
+import Tabs3 from "../assets/icons/tabs_3.svg";
 
 const tabs = [
   {
@@ -15,86 +17,86 @@ const tabs = [
       {
         title: "Screen Share",
         desc: "Walk through work, demos in real time",
-        icon: UploadCloud,
+        icon: Tabs2,
       },
       {
         title: "Live Whiteboard",
         desc: "Reliable quality for distraction-free calls",
-        icon: UploadCloud,
+        icon: Tabs3,
       },
     ],
     description:
       "One-on-One calls to connect directly, answer questions and share knowledge in real time.",
-    image: VideoImg,
+    image: "https://meetmymentor.me/assets/videomodal4-3e2c7b23.png",
   },
   {
     label: "1:1 DMs",
     features: [
       {
-        title: "Direct Messaging",
-        desc: "Chat privately with your mentor",
+        title: "Stay On-Platform",
+        desc: "No need to share your email or phone number.",
+        icon: UploadCloud,
+      },
+      {
+        title: "Clean Interface",
+        desc: "Simple layout for smooth back-and-forth messaging.",
         icon: UploadCloud,
       },
       {
         title: "File Sharing",
-        desc: "Share resources and notes easily",
-        icon: UploadCloud,
-      },
-      {
-        title: "Instant Replies",
-        desc: "Get answers in real time",
+        desc: "Send resumes, mockups, presentations and more.",
         icon: UploadCloud,
       },
     ],
     description:
-      "Message mentors directly to ask questions, share files, and get instant feedback.",
-    image: VideoImg,
+      "Direct messaging without sharing personal contact details. Built for quick, focused conversations.",
+    image: "https://meetmymentor.me/assets/chat4-7bf7d93a.png",
   },
   {
     label: "Webinars",
     features: [
       {
-        title: "Group Sessions",
-        desc: "Learn with others in live webinars",
+        title: "One-Click Setup",
+        desc: "Create and publish webinars for any topic or audience.",
         icon: UploadCloud,
       },
       {
-        title: "Q&A",
-        desc: "Ask questions and get answers live",
+        title: "End-to-End Support",
+        desc: "Handles payments, confirmations, meet links, and reminders automatically.",
         icon: UploadCloud,
       },
       {
-        title: "Session Recordings",
-        desc: "Access past webinars anytime",
+        title: "Participant Tracking",
+        desc: " View attendees, monitor status, and manage email and whatsapp follow-ups.",
         icon: UploadCloud,
       },
     ],
     description:
-      "Join live webinars to learn from mentors, ask questions, and access recordings.",
-    image: VideoImg,
+      "Host paid webinars with full support across setup, access, and post-session tracking.",
+    image: "https://meetmymentor.me/assets/webinar4-f7f42ee1.png",
   },
   {
     label: "Digital Content",
     features: [
       {
-        title: "Exclusive Resources",
-        desc: "Access curated guides and templates",
+        title: "Course Hosting",
+        desc: "Upload videos, PDFs or audio files for paid, gated access.",
         icon: UploadCloud,
       },
       {
-        title: "Video Tutorials",
-        desc: "Learn at your own pace",
+        title: "Anti-Piracy Protection",
+        desc: "Includes DRM encryption, IP restriction and screen capture blocking.",
         icon: UploadCloud,
       },
       {
-        title: "Downloadable Content",
-        desc: "Save materials for future use",
+        title: "Direct Checkout",
+        desc: "Buyers can purchase and access content directly from creator profiles.",
         icon: UploadCloud,
       },
     ],
     description:
-      "Get access to exclusive digital content, tutorials, and downloadable resources.",
-    image: VideoImg,
+      "Upload and sell exclusive digital content with built-in protection and flexible access control.",
+    image: "https://meetmymentor.me/assets/courses4-9e10f9d1.png",
   },
 ];
 

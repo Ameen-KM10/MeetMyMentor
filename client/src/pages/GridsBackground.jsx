@@ -66,14 +66,14 @@ const GridsBackground = memo(() => {
                 Meet Your
               </p>
               <div className="relative inline-block">
+                <p className="relative z-10 font-dessaufont font-semibold sm:text-[36px] lg:text-[64px]">
+                  Mentor
+                </p>
                 <img
                   src={Line}
                   alt="Decorative line"
                   className="absolute top-1 left-1/2 -translate-x-1/2 z-10"
                 />
-                <p className="relative z-10 font-dessaufont font-semibold sm:text-[36px] lg:text-[64px]">
-                  Mentor
-                </p>
               </div>
             </div>
             <div className="mx-auto text-center font-sans font-medium text-gray-600 sm:w-[300px] sm:text-[12px] lg:w-[522px] lg:text-[20px]">

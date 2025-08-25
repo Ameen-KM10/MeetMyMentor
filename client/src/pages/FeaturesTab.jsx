@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import VideoImg from "../assets/stock.png"; // Use any stock image you have
-import UploadCloud from "../assets/icons/upload.svg";
+import UploadCloud from "../assets/icons/tabs_1.svg";
 
 const tabs = [
   {
