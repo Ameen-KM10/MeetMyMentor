@@ -7,12 +7,13 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row md:justify-between gap-10 md:gap-0 pb-8">
           {/* Logo and tagline */}
           <div className="flex flex-col gap-4 md:w-1/3">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <img
                 src={Logo}
                 alt="Meet My Mentor Logo"
                 className="h-10 w-auto"
               />
+              <span className="font-semibold font-dessaufont text-lg">eet My Mentor</span>
             </div>
             <div className="text-sm mt-2">
               Helping Creators Monetize Their Creation
