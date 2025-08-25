@@ -264,7 +264,7 @@ const Stack = () => {
   const cards = useMemo(() => tabs, []);
 
   return (
-    <div className="text-white min-h-screen flex flex-col mb-20">
+    <div className="text-white bg-[#FAF3EC] min-h-screen flex flex-col">
       {/* Stack Container - Reduced height for better performance */}
       <div ref={containerRef} className="relative h-[400vh]">
         <div className="sticky top-0 h-screen flex flex-col items-center justify-center">

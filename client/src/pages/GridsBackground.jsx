@@ -28,6 +28,18 @@ const GridsBackground = memo(() => {
           direction="down"
           borderColor="#000000"
           hoverFillColor="#000"
+          className='opacity-60'
+        />
+        {/* Circular fade overlay for Squares only */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 11,
+            background:
+              "radial-gradient(circle, rgba(255,255,255,0) 60%, #fff 100%)",
+          }}
         />
         {/* Fade overlay (not interactive) - optimized with transform3d for GPU acceleration */}
         <div
