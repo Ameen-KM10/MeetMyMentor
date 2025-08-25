@@ -18,8 +18,12 @@ function App() {
       <GridsBackground />
       <NicheFilter />
       <Stats />
-      <Stack />
-      {/* <FeaturesTab /> */}
+      <div className="sm:hidden lg:inline">
+        <Stack />
+      </div>
+      <div className="lg:hidden">
+        <FeaturesTab />
+      </div>
       {/* <Calculator /> */}
       <FeaturesSection />
       <MentorTestimonials />

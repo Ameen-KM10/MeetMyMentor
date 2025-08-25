@@ -1,9 +1,17 @@
 import { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import VideoImg from "../assets/stock.png";
-import UploadCloud from "../assets/icons/tabs_1.svg";
+import Tabs1 from "../assets/icons/tabs_1.svg";
 import Tabs2 from "../assets/icons/tabs_2.svg";
 import Tabs3 from "../assets/icons/tabs_3.svg";
+import Tabs4 from "../assets/icons/tabs_4.svg";
+import Tabs5 from "../assets/icons/tabs_5.svg";
+import Tabs6 from "../assets/icons/tabs_6.svg";
+import Tabs7 from "../assets/icons/tabs_7.svg";
+import Tabs8 from "../assets/icons/tabs_8.svg";
+import Tabs9 from "../assets/icons/tabs_9.svg";
+import Tabs10 from "../assets/icons/tabs_10.svg";
+import Tabs11 from "../assets/icons/tabs_11.svg";
+import Tabs12 from "../assets/icons/tabs_12.svg";
 
 const tabs = [
   {
@@ -12,7 +20,7 @@ const tabs = [
       {
         title: "Crystal-Clear Video",
         desc: "Reliable quality for distraction-free calls",
-        icon: UploadCloud,
+        icon: Tabs1,
       },
       {
         title: "Screen Share",
@@ -35,17 +43,17 @@ const tabs = [
       {
         title: "Stay On-Platform",
         desc: "No need to share your email or phone number.",
-        icon: UploadCloud,
+        icon: Tabs4,
       },
       {
         title: "Clean Interface",
         desc: "Simple layout for smooth back-and-forth messaging.",
-        icon: UploadCloud,
+        icon: Tabs5,
       },
       {
         title: "File Sharing",
         desc: "Send resumes, mockups, presentations and more.",
-        icon: UploadCloud,
+        icon: Tabs6,
       },
     ],
     description:
@@ -58,17 +66,17 @@ const tabs = [
       {
         title: "One-Click Setup",
         desc: "Create and publish webinars for any topic or audience.",
-        icon: UploadCloud,
+        icon: Tabs7,
       },
       {
         title: "End-to-End Support",
         desc: "Handles payments, confirmations, meet links, and reminders automatically.",
-        icon: UploadCloud,
+        icon: Tabs8,
       },
       {
         title: "Participant Tracking",
         desc: " View attendees, monitor status, and manage email and whatsapp follow-ups.",
-        icon: UploadCloud,
+        icon: Tabs9,
       },
     ],
     description:
@@ -81,17 +89,17 @@ const tabs = [
       {
         title: "Course Hosting",
         desc: "Upload videos, PDFs or audio files for paid, gated access.",
-        icon: UploadCloud,
+        icon: Tabs10,
       },
       {
         title: "Anti-Piracy Protection",
         desc: "Includes DRM encryption, IP restriction and screen capture blocking.",
-        icon: UploadCloud,
+        icon: Tabs11,
       },
       {
         title: "Direct Checkout",
         desc: "Buyers can purchase and access content directly from creator profiles.",
-        icon: UploadCloud,
+        icon: Tabs12,
       },
     ],
     description:
@@ -148,45 +156,28 @@ const OptimizedCard = ({ card, index, scrollYProgress, isVisible }) => {
         mass: 0.8,
       }}
     >
-      {/* Mobile Layout */}
-      <div className="h-full flex flex-col gap-2 p-6 lg:hidden">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900 text-left">
+      {/* Mobile Layout from FeaturesTab.jsx */}
+      <div className="flex flex-col justify-center lg:hidden">
+        <h3 className="font-semibold text-[#222] text-[24px] text-left mb-2">
           {card.label}
-        </h2>
-
-        <div className="flex justify-center mb-4">
-          <img
-            src={card.image}
-            alt={card.label}
-            className="w-full h-48 object-cover rounded-xl shadow-lg opacity-90"
-            loading="lazy"
-            decoding="async"
-            fetchPriority={index === 0 ? "high" : "low"}
-          />
-        </div>
-
-        <p className="text-gray-700 text-base mb-4 leading-relaxed text-left">
+        </h3>
+        <p className="text-gray-600 font-sans text-[16px] font-medium mb-4 text-left">
           {card.description}
         </p>
-
-        <div className="space-y-3">
+        <img src={card.image} alt={card.label} className="w-full h-auto mb-6" />
+        <ul className="flex flex-col gap-4 ml-10 mb-4">
           {card.features.map((feature, featureIndex) => (
-            <div key={featureIndex} className="flex items-center gap-3">
-              <img
-                src={feature.icon}
-                alt=""
-                className="w-4 h-4 opacity-70 flex-shrink-0"
-                loading="lazy"
-              />
-              <div className="text-left">
-                <span className="text-gray-900 font-semibold text-sm">
-                  {feature.title}
-                </span>
-                <p className="text-gray-600 text-xs">{feature.desc}</p>
+            <li key={featureIndex} className="flex items-center gap-3">
+              <span>
+                <img src={feature.icon} />
+              </span>
+              <div>
+                <span className="font-medium text-[#222]">{feature.title}</span>
+                <div className="text-gray-500 text-sm">{feature.desc}</div>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       {/* Desktop Layout */}
