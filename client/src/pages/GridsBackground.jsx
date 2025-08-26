@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Squares from "../component/Squares";
 import { memo } from "react";
 import Marquee from "../component/Marquee";
@@ -19,7 +20,12 @@ LineSVG.displayName = "LineSVG";
 
 const GridsBackground = memo(() => {
   return (
-    <div className="relative w-full h-full min-h-screen overflow-hidden will-change-scroll">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.99 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.1, ease: "easeOut" }}
+      className="relative w-full h-full min-h-screen overflow-hidden will-change-scroll"
+    >
       {/* Background layer (interactive) */}
       <div className="absolute inset-0 z-10">
         <Squares
@@ -28,7 +34,7 @@ const GridsBackground = memo(() => {
           direction="down"
           borderColor="#000000"
           hoverFillColor="#000"
-          className='opacity-60'
+          className="opacity-60"
         />
         {/* Circular fade overlay for Squares only */}
         <div
@@ -156,7 +162,7 @@ const GridsBackground = memo(() => {
           <Marquee cards={cards} />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 });
 

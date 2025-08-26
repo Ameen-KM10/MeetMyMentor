@@ -24,7 +24,6 @@ function App() {
       <div className="lg:hidden">
         <FeaturesTab />
       </div>
-      {/* <Calculator /> */}
       <FeaturesSection />
       <MentorTestimonials />
       <Faq />
