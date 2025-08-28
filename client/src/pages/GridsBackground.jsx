@@ -20,12 +20,7 @@ LineSVG.displayName = "LineSVG";
 
 const GridsBackground = memo(() => {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.99 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1.1, ease: "easeOut" }}
-      className="relative w-full h-full min-h-screen overflow-hidden will-change-scroll"
-    >
+    <div>
       {/* Background layer (interactive) */}
       <div className="absolute inset-0 z-10">
         <Squares
@@ -162,7 +157,7 @@ const GridsBackground = memo(() => {
           <Marquee cards={cards} />
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 });
 
