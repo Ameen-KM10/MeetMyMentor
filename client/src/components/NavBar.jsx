@@ -1,0 +1,175 @@
+import React, { useState, useEffect } from "react";
+import Logo from "../assets/Logo.png";
+
+const NavBar = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = drawerOpen ? "hidden" : "";
+    return () => (document.body.style.overflow = "");
+  }, [drawerOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <nav
+      className={`fixed top-0 left-0 w-screen z-50 transition-colors duration-300 ${
+        scrolled ? "bg-white shadow" : "bg-transparent"
+      }`}
+    >
+      <div className="flex justify-center">
+        <div className="h-20 w-full px-4 flex items-center justify-between max-w-[1440px] lg:mx-20">
+          <img
+            src={Logo}
+            alt="logo"
+            className="h-[40px] w-[40px] lg:h-[50px] lg:w-[50px] transition-all duration-300 hover:scale-110 hover:rotate-3 cursor-pointer"
+          />
+
+          {/* Centered Menus */}
+          <div className="hidden lg:flex flex-1 justify-center gap-6">
+            {scrolled && (
+              <>
+                <button
+                  className="px-6 py-2 text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group"
+                  onClick={() => (window.location.href = "/explore")}
+                >
+                  <span className="relative z-10">Find a Mentor</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left opacity-0 group-hover:opacity-10"></div>
+                </button>
+                <button
+                  className="px-6 py-2 text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group"
+                  onClick={() => (window.location.href = "/mentorsignup")}
+                >
+                  <span className="relative z-10">Become a Mentor</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left opacity-0 group-hover:opacity-10"></div>
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Login/Sign Up always visible */}
+          <div className="hidden gap-2 lg:flex">
+            <button
+              className="px-6 py-2 text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg font-sans font-medium text-black transition-all duration-300 hover:bg-[#FC8019] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 relative overflow-hidden group"
+              onClick={() => (window.location.href = "/login")}
+            >
+              <span className="relative z-10">Login</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-20"></div>
+            </button>
+            <button
+              className="px-5 py-2 text-[14px] lg:px-5 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-white bg-[#163C50] transition-all duration-300 hover:bg-[#FC8019] hover:scale-105 hover:shadow-lg active:scale-95 relative overflow-hidden group"
+              onClick={() => (window.location.href = "/signup")}
+            >
+              <span className="relative z-10">Sign Up</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FC8019] to-[#FC8019] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-10"></div>
+            </button>
+          </div>
+
+          {/* Hamburger menu */}
+          <button
+            className="z-20 focus:outline-none text-[50px] md:text-[50px] lg:hidden transition-all duration-300 p-2 rounded-lg "
+            onClick={() => setDrawerOpen(!drawerOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="transition-transform duration-300 "
+            >
+              <rect
+                x="4"
+                y="7"
+                width="16"
+                height="2"
+                rx="1"
+                fill="#163C50"
+                className="transition-all duration-300"
+              />
+              <rect
+                x="4"
+                y="11"
+                width="16"
+                height="2"
+                rx="1"
+                fill="#163C50"
+                className="transition-all duration-300"
+              />
+              <rect
+                x="4"
+                y="15"
+                width="16"
+                height="2"
+                rx="1"
+                fill="#163C50"
+                className="transition-all duration-300"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full w-2/3 bg-white shadow-lg z-50 transition-transform duration-300 lg:hidden ${
+          drawerOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col h-full gap-6 p-6">
+          <button
+            className="self-end text-3xl font-bold text-[#163C50] focus:outline-none"
+            onClick={() => setDrawerOpen(false)}
+            aria-label="Close menu"
+          >
+            &times;
+          </button>
+          <a
+            className="text-lg font-semibold text-[#163C50]"
+            onClick={() => (window.location.href = "/explore")}
+          >
+            Find a Mentor
+          </a>
+          <a
+            className="text-lg font-semibold text-[#163C50]"
+            onClick={() => (window.location.href = "/mentorsignup")}
+          >
+            Become a Mentor
+          </a>
+          <div className="flex-grow" />
+          <div className="flex flex-col gap-2">
+            <button
+              className="px-2 py-2 text-[14px] lg:px-2 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-black border-[#163C50]"
+              onClick={() => (window.location.href = "/login")}
+            >
+              Login
+            </button>
+            <button
+              className="px-2 py-2 text-[14px] lg:px-2 lg:py-2 lg:text-[14px] rounded-lg border font-sans font-medium text-white bg-[#163C50]"
+              onClick={() => (window.location.href = "/signup")}
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* Overlay */}
+      {drawerOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-30 z-40 lg:hidden"
+          onClick={() => setDrawerOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+    </nav>
+  );
+};
+
+export default NavBar;
