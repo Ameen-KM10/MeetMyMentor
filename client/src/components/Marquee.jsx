@@ -30,7 +30,7 @@ function Marquee({ cards }) {
     const track = trackRef.current;
     if (!track) return;
 
-    const speed = 0.5;
+    const speed = 0.3;
     const cardWidth = window.innerWidth >= 1024 ? 232 : 154;
     const resetPoint = -(cardWidth * cardsRef.current.length);
 

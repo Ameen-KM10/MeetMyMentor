@@ -19,8 +19,8 @@ LineSVG.displayName = "LineSVG";
 
 const Hero = memo(() => {
   return (
-    <div>
-      {/* Background layer (interactive) */}
+    <div className="relative h-screen overflow-hidden">
+      {/* Background layer (interactive) - contained within hero bounds */}
       <div className="absolute inset-0 z-10">
         <Squares
           speed={0.2}
@@ -43,7 +43,7 @@ const Hero = memo(() => {
         />
         {/* Fade overlay (not interactive) - optimized with transform3d for GPU acceleration */}
         <div
-          className="absolute left-0 right-0 bottom-0 lg:pointer-events-none"
+          className="absolute left-0 right-0 bottom-0 lg:pointer-events-none z-20"
           style={{
             height: "30vh",
             background:
@@ -61,7 +61,7 @@ const Hero = memo(() => {
             <img
               src={Mentors}
               alt="mentors"
-              className="h-5 lg:h-7" 
+              className="h-5 lg:h-7"
               loading="eager"
               decoding="async"
             />

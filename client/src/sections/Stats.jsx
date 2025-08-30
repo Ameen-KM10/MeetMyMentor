@@ -101,7 +101,14 @@ const Stats = () => {
         <div className="absolute inset-0 flex flex-col gap-8 justify-center w-10/12 mx-auto">
           <div className="flex items-center justify-center gap-3">
             <p className="flex">
-              <span className="font-bold text-[#163C50] text-[36px]">97</span>
+              <CountUp
+                from={80}
+                to={97}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text font-bold text-[#163C50] text-[36px]"
+              />
               <span className="font-medium text-[#163C50] text-[36px]">%</span>
             </p>
             <span className="text-gray-600 text-[12px] font-medium leading-4 font-sans max-w-[350px]">
@@ -113,17 +120,31 @@ const Stats = () => {
               mentored will also go on to mentor others
             </span>
             <p className="flex">
-              <span className="font-bold text-[#163C50] text-[36px]">97</span>
+              <CountUp
+                from={80}
+                to={89}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text font-bold text-[#163C50] text-[36px]"
+              />
               <span className="font-medium text-[#163C50] text-[36px]">%</span>
             </p>
           </div>
           <div className="flex items-center justify-center gap-3">
             <p className="flex">
-              <span className="font-bold text-[#163C50] text-[36px]">97</span>
+              <CountUp
+                from={80}
+                to={84}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text font-bold text-[#163C50] text-[36px]"
+              />
               <span className="font-medium text-[#163C50] text-[36px]">%</span>
             </p>
             <span className="text-gray-600 text-[12px] font-sans font-medium leading-4 max-w-[350px]">
-              with a mentor say they find the mentorship to be a valuable one.{" "}
+              reported that mentoring provides two-way inspiration.
             </span>
           </div>
         </div>
