@@ -4,8 +4,8 @@ const MarqueeCard = forwardRef(({ card }, ref) => (
   <div
     ref={ref}
     className="
-      w-[138px] h-[158px] p-2
-      lg:w-[216px] lg:h-[244px] lg:p-[10px] lg:hover:scale-105
+      w-[138px] min-h-[158px] p-2
+      lg:min-w-[216px] lg:min-h-[244px] lg:p-[10px] lg:hover:scale-105
       mx-2 bg-gray-200 rounded-lg shadow flex items-end transition-all relative"
     style={{
       backgroundImage: `url(${card.image ? card.image : ProfileImage})`,

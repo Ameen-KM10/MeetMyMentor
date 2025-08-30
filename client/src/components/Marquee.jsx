@@ -1,52 +1,29 @@
 import { useState, useEffect, useRef } from "react";
 import MarqueeCard from "./MarqueeCard";
 
-const defaultSpeed = 0.7;
-
 function Marquee({ cards }) {
-  const [cardList, setCardList] = useState([...cards]);
-  const [x, setX] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [speed] = useState(defaultSpeed);
-  const [cardWidth, setCardWidth] = useState(231);
-  const transitionRef = useRef("none");
-  const cardRef = useRef(null);
+  const [duplicatedCards, setDuplicatedCards] = useState([]);
+  const [isPlaying, setIsPlaying] = useState(true);
   const containerRef = useRef(null);
-  const isVisible = useRef(true);
-  const animationFrame = useRef(null);
-  const hasShifted = useRef(false);
+  const trackRef = useRef(null);
+  const animationRef = useRef(null);
 
+  // Duplicate cards for seamless infinite scroll
   useEffect(() => {
-    setCardList([...cards]);
-    setX(0);
-    // Measure the first card's width
-    if (cardRef.current) {
-      setCardWidth(cardRef.current.offsetWidth + 15);
+    if (cards && cards.length > 0) {
+      // Create multiple copies to ensure smooth infinite scroll
+      const tripleCards = [...cards, ...cards, ...cards];
+      setDuplicatedCards(tripleCards);
     }
   }, [cards]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (cardRef.current) {
-        setCardWidth(cardRef.current.offsetWidth + 15);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Intersection Observer to pause animation when not visible
+  // Intersection Observer to pause when not visible
   useEffect(() => {
     if (!containerRef.current) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        isVisible.current = entry.isIntersecting;
-        if (!entry.isIntersecting) {
-          setIsPaused(true);
-        } else {
-          setIsPaused(false);
-        }
+        setIsPlaying(entry.isIntersecting);
       },
       { threshold: 0.1 }
     );
@@ -55,59 +32,76 @@ function Marquee({ cards }) {
     return () => observer.disconnect();
   }, []);
 
+  // Animation logic
   useEffect(() => {
+    if (!trackRef.current || !duplicatedCards.length) return;
+
+    const track = trackRef.current;
+    let translateX = 0;
+    const speed = 0.5; // Pixels per frame
+
     const animate = () => {
-      if (!isPaused && isVisible.current) {
-        setX((prevX) => {
-          let nextX = prevX - speed;
-          // Check if we've moved far enough to shift a card
-          if (nextX <= -cardWidth) {
-            setCardList((prevList) => {
-              const shifted = [...prevList];
-              shifted.push(shifted.shift());
-              return shifted;
-            });
-            transitionRef.current = "none";
-            // Reset position by adding back the cardWidth
-            return nextX + cardWidth;
-          }
-          transitionRef.current = "transform 0s linear";
-          return nextX;
-        });
+      if (isPlaying) {
+        translateX -= speed;
+
+        // Reset position when first set of cards has completely scrolled out
+        // Each card is approximately 154px wide on mobile (138px + 16px margin)
+        // and 232px on desktop (216px + 16px margin)
+        const cardWidth = window.innerWidth >= 1024 ? 232 : 154;
+        const resetPoint = -(cardWidth * cards.length);
+
+        if (translateX <= resetPoint) {
+          translateX = 0;
+        }
+
+        track.style.transform = `translateX(${translateX}px)`;
       }
-      animationFrame.current = requestAnimationFrame(animate);
+
+      animationRef.current = requestAnimationFrame(animate);
     };
 
-    animationFrame.current = requestAnimationFrame(animate);
+    animationRef.current = requestAnimationFrame(animate);
 
     return () => {
-      if (animationFrame.current) {
-        cancelAnimationFrame(animationFrame.current);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isPaused, speed, cardWidth]);
+  }, [isPlaying, duplicatedCards, cards]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      // Reset animation on resize to recalculate card widths
+      if (trackRef.current) {
+        trackRef.current.style.transform = "translateX(0px)";
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  if (!duplicatedCards.length) {
+    return null;
+  }
 
   return (
     <div
       ref={containerRef}
-      className="overflow-hidden w-screen py-4 px-4"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      className="overflow-hidden w-full py-4"
+      onMouseEnter={() => setIsPlaying(false)}
+      onMouseLeave={() => setIsPlaying(true)}
     >
       <div
-        className="flex marquee-track"
+        ref={trackRef}
+        className="flex will-change-transform"
         style={{
-          width: cardList.length * cardWidth,
-          transform: `translateX(${x}px)`,
-          transition: transitionRef.current,
+          width: "max-content",
         }}
       >
-        {cardList.map((card, idx) => (
-          <MarqueeCard
-            key={idx + card.title}
-            card={card}
-            ref={idx === 0 ? cardRef : null}
-          />
+        {duplicatedCards.map((card, index) => (
+          <MarqueeCard key={`${card.title}-${index}`} card={card} />
         ))}
       </div>
     </div>
