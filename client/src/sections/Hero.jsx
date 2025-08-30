@@ -61,7 +61,7 @@ const Hero = memo(() => {
             <img
               src={Mentors}
               alt="mentors"
-              className="h-5 lg:h-7"
+              className="h-5 lg:h-7" 
               loading="eager"
               decoding="async"
             />
@@ -150,10 +150,12 @@ const Hero = memo(() => {
         </div>
 
         {/* Marquee */}
-        <div className="relative w-full mt-7 overflow-hidden lg:pointer-events-auto">
+        <div className="relative w-full mt-7 overflow-hidden pointer-events-auto">
           <div className="absolute top-0 left-0 h-full w-4 lg:w-10 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none will-change-transform" />
           <div className="absolute top-0 right-0 h-full w-4 lg:w-10 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none will-change-transform" />
-          <Marquee cards={cards} />
+          <div className="touch-pan-y" style={{ touchAction: "pan-y" }}>
+            <Marquee cards={cards} />
+          </div>
         </div>
       </div>
     </div>

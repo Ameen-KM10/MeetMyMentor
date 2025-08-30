@@ -2,58 +2,51 @@ import { useState, useEffect, useRef } from "react";
 import MarqueeCard from "./MarqueeCard";
 
 function Marquee({ cards }) {
+  // State
   const [duplicatedCards, setDuplicatedCards] = useState([]);
-  const [isPlaying, setIsPlaying] = useState(true);
+
+  // Refs
   const containerRef = useRef(null);
   const trackRef = useRef(null);
   const animationRef = useRef(null);
-  const translateXRef = useRef(0); // Store current position
+  const translateXRef = useRef(0);
+  const cardsRef = useRef([]);
+  const isPausedRef = useRef(false);
 
-  // Duplicate cards for seamless infinite scroll
+  // Initialize cards and create duplicates for seamless infinite scroll
   useEffect(() => {
     if (cards && cards.length > 0) {
-      // Create multiple copies to ensure smooth infinite scroll
+      cardsRef.current = cards;
       const tripleCards = [...cards, ...cards, ...cards];
       setDuplicatedCards(tripleCards);
     }
   }, [cards]);
 
-  // Intersection Observer to pause when not visible
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsPlaying(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   // Animation logic
   useEffect(() => {
-    if (!trackRef.current || !duplicatedCards.length) return;
+    if (!duplicatedCards.length || !cardsRef.current.length) return;
+    if (animationRef.current) return; // Prevent restart if already running
 
     const track = trackRef.current;
-    const speed = 0.5; // Pixels per frame
+    if (!track) return;
+
+    const speed = 0.5;
+    const cardWidth = window.innerWidth >= 1024 ? 232 : 154;
+    const resetPoint = -(cardWidth * cardsRef.current.length);
 
     const animate = () => {
-      if (isPlaying) {
-        translateXRef.current -= speed;
+      const isDesktop = window.innerWidth >= 1024;
+      const shouldAnimate = !isDesktop || (isDesktop && !isPausedRef.current);
 
-        // Reset position when first set of cards has completely scrolled out
-        // Each card is approximately 154px wide on mobile (138px + 16px margin)
-        // and 232px on desktop (216px + 16px margin)
-        const cardWidth = window.innerWidth >= 1024 ? 232 : 154;
-        const resetPoint = -(cardWidth * cards.length);
+      if (shouldAnimate) {
+        translateXRef.current -= speed;
 
         if (translateXRef.current <= resetPoint) {
           translateXRef.current = 0;
         }
+      }
 
+      if (track) {
         track.style.transform = `translateX(${translateXRef.current}px)`;
       }
 
@@ -65,23 +58,23 @@ function Marquee({ cards }) {
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
       }
     };
-  }, [isPlaying, duplicatedCards, cards]);
+  }, [duplicatedCards.length]);
 
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      // Reset animation on resize to recalculate card widths
-      if (trackRef.current) {
-        translateXRef.current = 0;
-        trackRef.current.style.transform = "translateX(0px)";
-      }
-    };
+  // Desktop hover handlers
+  const handleMouseEnter = () => {
+    if (window.innerWidth >= 1024) {
+      isPausedRef.current = true;
+    }
+  };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const handleMouseLeave = () => {
+    if (window.innerWidth >= 1024) {
+      isPausedRef.current = false;
+    }
+  };
 
   if (!duplicatedCards.length) {
     return null;
@@ -91,14 +84,16 @@ function Marquee({ cards }) {
     <div
       ref={containerRef}
       className="overflow-hidden w-full py-4"
-      onMouseEnter={() => setIsPlaying(false)}
-      onMouseLeave={() => setIsPlaying(true)}
+      style={{ touchAction: "pan-y" }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div
         ref={trackRef}
         className="flex will-change-transform"
         style={{
           width: "max-content",
+          touchAction: "none",
         }}
       >
         {duplicatedCards.map((card, index) => (
