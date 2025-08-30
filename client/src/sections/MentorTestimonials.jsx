@@ -50,6 +50,8 @@ const cardVariants = {
 const MentorTestimonials = () => {
   const ref = useRef(null);
   const [visibleCount, setVisibleCount] = useState(testimonials.length);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollRef = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   useEffect(() => {
@@ -67,6 +69,19 @@ const MentorTestimonials = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Navigation functions for mobile
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : testimonials.length - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev < testimonials.length - 1 ? prev + 1 : 0));
+  };
+
+  const goToIndex = (index) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <motion.section
       ref={ref}
@@ -81,24 +96,96 @@ const MentorTestimonials = () => {
           Don’t take our word for it Hear it from our Mentors
         </h2>
       </motion.div>
-      <div className="w-full max-w-screen pb-2 hide-scrollbar overflow-x-auto md:overflow-hidden">
+      {/* Desktop: Multiple cards */}
+      <div className="hidden md:block w-full max-w-screen pb-2">
         <motion.div
           variants={sectionVariants}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          className="flex gap-8 py-2 flex-nowrap md:justify-center md:overflow-hidden"
+          className="flex gap-8 py-2 flex-nowrap justify-center"
         >
           {testimonials.slice(0, visibleCount).map((t, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
-              className="flex items-center justify-center flex-shrink-0 w-[300px] h-[400px] md:w-[300px] md:h-[400px] md:flex-shrink-0"
+              className="flex items-center justify-center flex-shrink-0 w-[300px] h-[400px]"
               animate={inView ? "show" : "hidden"}
             >
               <FlipCard testimonial={t} />
             </motion.div>
           ))}
         </motion.div>
+      </div>
+
+      {/* Mobile: Single card with navigation */}
+      <div className="md:hidden w-full flex flex-col items-center">
+        <div className="flex items-center justify-center w-full">
+          {/* Card Container */}
+          <motion.div
+            key={currentIndex}
+            variants={cardVariants}
+            initial="hidden"
+            animate="show"
+            className="flex items-center justify-center w-[300px] h-[400px]"
+          >
+            <FlipCard testimonial={testimonials[currentIndex]} />
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Navigation arrows and radio dots for mobile */}
+      <div className="flex items-center justify-center gap-4 mt-6 md:hidden">
+        {/* Left Arrow */}
+        <button
+          onClick={goToPrevious}
+          className="p-2 bg-white rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 transition-all duration-200"
+          aria-label="Previous testimonial"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <polyline points="15,18 9,12 15,6"></polyline>
+          </svg>
+        </button>
+
+        {/* Radio dots */}
+        <div className="flex gap-2">
+          {testimonials.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => goToIndex(idx)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                idx === currentIndex
+                  ? "bg-[#18405A] scale-125"
+                  : "bg-gray-300 hover:bg-gray-400"
+              }`}
+              aria-label={`Go to testimonial ${idx + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Right Arrow */}
+        <button
+          onClick={goToNext}
+          className="p-2 bg-white rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 transition-all duration-200"
+          aria-label="Next testimonial"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <polyline points="9,18 15,12 9,6"></polyline>
+          </svg>
+        </button>
       </div>
       <style>{`
         .hide-scrollbar::-webkit-scrollbar { display: none; }
@@ -125,9 +212,7 @@ function FlipCard({ testimonial }) {
               d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"
             ></path>
           </svg>
-          <p className="opacity-80 text-base ">
-            {testimonial.text}
-          </p>
+          <p className="opacity-80 text-base ">{testimonial.text}</p>
           <button
             className="relative font-bold bg-transparent text-black text-base py-1 px-0 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out group"
             onClick={() => (window.location.href = `/${testimonial.Link}`)}
