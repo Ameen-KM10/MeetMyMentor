@@ -7,6 +7,7 @@ function Marquee({ cards }) {
   const containerRef = useRef(null);
   const trackRef = useRef(null);
   const animationRef = useRef(null);
+  const translateXRef = useRef(0); // Store current position
 
   // Duplicate cards for seamless infinite scroll
   useEffect(() => {
@@ -37,12 +38,11 @@ function Marquee({ cards }) {
     if (!trackRef.current || !duplicatedCards.length) return;
 
     const track = trackRef.current;
-    let translateX = 0;
     const speed = 0.5; // Pixels per frame
 
     const animate = () => {
       if (isPlaying) {
-        translateX -= speed;
+        translateXRef.current -= speed;
 
         // Reset position when first set of cards has completely scrolled out
         // Each card is approximately 154px wide on mobile (138px + 16px margin)
@@ -50,11 +50,11 @@ function Marquee({ cards }) {
         const cardWidth = window.innerWidth >= 1024 ? 232 : 154;
         const resetPoint = -(cardWidth * cards.length);
 
-        if (translateX <= resetPoint) {
-          translateX = 0;
+        if (translateXRef.current <= resetPoint) {
+          translateXRef.current = 0;
         }
 
-        track.style.transform = `translateX(${translateX}px)`;
+        track.style.transform = `translateX(${translateXRef.current}px)`;
       }
 
       animationRef.current = requestAnimationFrame(animate);
@@ -74,6 +74,7 @@ function Marquee({ cards }) {
     const handleResize = () => {
       // Reset animation on resize to recalculate card widths
       if (trackRef.current) {
+        translateXRef.current = 0;
         trackRef.current.style.transform = "translateX(0px)";
       }
     };
